@@ -34,7 +34,7 @@ class Database extends \CodeIgniter\Database\Config
         'DSN' => '',
         'hostname' => 'localhost',
 		'username' => 'root',
-		'password' => $_ENV ['MYSQL_ROOT_PASSWORD'],
+		'password' => 'tiger',
 		'database' => 'card',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
