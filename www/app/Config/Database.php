@@ -33,8 +33,8 @@ class Database extends \CodeIgniter\Database\Config
     public $default = [
         'DSN' => '',
         'hostname' => 'localhost',
-		'username' => root,
-    		'password' => 'tiger',
+		'username' => 'root',
+		'password' => $_ENV ['MYSQL_ROOT_PASSWORD'],
 		'database' => 'card',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
