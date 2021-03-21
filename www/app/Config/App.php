@@ -22,7 +22,7 @@ class App extends BaseConfig
      * | environments.
      * |
      */
-    public $baseURL = 'http://localhost/pc-v3/pc3/';
+    public $baseURL = 'http://18.140.7.220/';
 
     /*
      * |--------------------------------------------------------------------------
