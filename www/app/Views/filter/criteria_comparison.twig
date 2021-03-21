@@ -1,0 +1,387 @@
+<div class="row seacrh-header" id="criteria">
+	<div id="btn-title-header-block">
+		<div class=" row">
+			<div class="col-md-8 float-left ">
+    			<h5 class="pl-4 page-title">
+    				{{ page_title }}
+    			</h5>
+			</div>
+		</div>
+	</div>
+	<div id="btn-date-header-block">
+    	<div class="input-daterange input-group" id="datepicker">
+    		<input autocomplete="off" type="text" disabled class="input-sm form-control date-start" name="start" value="{{ 'now'|date('Y-m-d') }}" > 
+    		<span class="input-to pt-2">-</span> 
+    		<input autocomplete="off" type="text" disabled class="input-sm form-control date-end" name="end" value="{{ 'now'|date('Y-m-d') }}">
+    	</div>
+    </div>
+	<div id="btn-search-header-block">
+		<button class="popup-list-open btn btn-outline-secondary  waves-effect waves-light " type="button" id="search-more">
+			More <span class="triangle_down"></span>
+		</button>
+		<button class="btn btn-secondary " id="search">Search</button>
+	</div>
+</div>
+
+<div class="search-body comparison">
+	<div class="popup-list-open"  >
+		<div class="popup-list-wrapper">
+			<form action="#" method="post" class="j-forms" id="criteria-form">
+				<div class="content">
+					<div class="row">
+						<div class="col-md-6 float-left border-right criteria-group-left">
+							<div class="row">
+								<div class="col-md-6 float-left">
+									<label> <input type="radio" name="option_left" checked value="1" class="group-left">&nbsp; Location
+									</label>
+								</div>
+								<div class="col-md-6 float-left ">
+									<label> <input type="radio" name="option_left" value="2" class="group-left">&nbsp; Group
+									</label>
+								</div>
+							</div>
+							<hr>
+							<div class="row pt-2 item-location">
+								<div class=" input-group criteria-search ml-3 pb-3">
+									<input type="text" name="option_search_location" id="criteria_search_location" value="" placeholder="Location Name" class="input-sm form-control">
+								</div>
+								<div class="row item-all">
+									<div class="col-md-12 float-left pb-1  ">
+										<input checked type="checkbox" name="option_location_all" id="option_location_branch" value="1" > &nbsp;All Branch
+									</div>
+								</div>
+								<ul>
+    								{% for province in branchs %}
+    									<li class="row item-province item-province-{{ province.id }} "  >
+    										<input checked type="checkbox" name="option_province[]" data-parent="" id="province-{{ province.id }}" value="{{ province.id }}" class="province"> &nbsp; {{ province.name|capitalize }}
+    										<div class="col-sm-1 text-right collapse-icon">
+        										<a data-toggle="collapse" 
+            										data-target="#parent-{{ province.id }}" 
+            										aria-expanded="true"><p class="collapse-icon-plus">+</p><p class="collapse-icon-minus">-</p></a>
+        									</div>
+    										<ul class="collapse show"
+    										 data-id="{{ province.id }}" 
+        									 data-value="{{ province.name }}" 
+        									 id="parent-{{ province.id }}">
+    					                        {% for branch in province.branch %}
+        											<li class="row item-branch item-branch-{{ branch.id }} " data-id="{{ branch.id }}" data-value="{{ branch.name }}" id="parent-{{ branch.id }}" data-parent="parent-{{ province.id }}">
+    													<input checked type="checkbox" id="branch-{{ branch.id }}" data-parent="{{ province.id }}" value="{{ branch.id }}" data-province-id="province-{{ province.id }}" name="option_branch[]" value="{{ branch.id }}" class="branch province-{{ province.id }}"> &nbsp; {{ branch.name|capitalize }}
+            											<div class="col-sm-1 text-right collapse-icon">
+                    										<a data-toggle="collapse" 
+                        										data-target="#collapse-{{ branch.id }}" 
+                        										aria-expanded="true">
+                        										<p class="collapse-icon-plus">+</p>
+                        										<p class="collapse-icon-minus">-</p>
+                        									</a>
+                    									</div>
+            											<ul
+            											class="collapse show" 
+                        								id="collapse-{{ branch.id }}">
+                											{% for group in branch.group %}
+                    											{% if group.id is not empty %}
+                    												<li class="row location-item-group item-group-{{ group.id }} item-child-2" data-id="{{ group.id }}" data-value="{{ group.name }}" data-parent="parent-{{ branch.id }}">
+                    													<input checked type="checkbox" name="option_camera_group[]" data-parent="{{ branch.id }}"  value="{{ group.id }}" data-branch-id="branch-{{ branch.id }}" class="camera branch-{{ branch.id }}"> &nbsp; {{ group.name|capitalize }}
+                    												</li>
+                    											{% endif %}
+                											{% endfor %}
+            											</ul>
+        											</li>
+    										    {% endfor %}
+    										</ul>
+    									</li>
+    								{% endfor %}
+								</ul>
+							</div>
+							<div class="row pt-2 item-group hide">
+								<div class=" input-group criteria-search ml-3 pb-3">
+									<input type="text" name="option_search_group" id="criteria_search_group" value="" placeholder="Group Name" class="input-sm form-control">
+								</div>
+								
+								{% macro render_group(data, i) %}
+									{% import _self as macros %}
+									
+									<ul>
+									{% for level in data %}
+										<li class="row col-md-12 item-branch-group item-branch-group-{{ level.id }} item-child-{{ i }}" data-id="{{ level.id }}" data-value="{{ level.name }}">
+    											<div class=" float-left ml-4 pt-1 block-group">
+    												<input class="check-group" type="checkbox" name="level[]" value="{{ level.id }}"> &nbsp; {{ level.name|capitalize }}
+    											</div>
+										
+        										{% if level.branch_id is not empty %}
+        											<ul class="row col-md-12 item-branch-group item-branch-group-{{ level.branch_id }} item-child-{{ i+1 }}" data-id="{{ level.branch_id }}" data-value="{{ level.branch_name }}">
+        												<div class=" float-left ml-4 pt-1 block-group">
+        													<input class="check-group" type="checkbox" name="level[]" value="{{ level.branch_id }}"> &nbsp; {{ level.branch_name|capitalize }}
+        												</div>
+        											
+        											{% for group_camera in level.group_camera %}
+        												{% if group_camera.id is not empty %}
+        													<li class="row col-md-12  group-item-branchgroup item-group-{{ group_camera.id }} item-child-{{ i+2 }} parent-{{ branch.id }}" data-id="{{ group_camera.id }}" data-value="{{ group_camera.name }}">
+        														<div class=" float-left ml-4 pt-1 block-group">
+        															<input class="check-camera-group" type="checkbox" name="option_group_camera[]" value="{{ group_camera.id }}"  > &nbsp; {{ group_camera.name|capitalize }}
+        														</div>
+        													</li>
+        												{% endif %}
+        											{% endfor %}
+        											</ul>
+        										{% endif %}
+        										
+        										{% if level.group_branch is not empty %}
+        										    {{ macros.render_group(level.group_branch, i+1) }}
+        									    {% endif %}
+									    </li>
+									{% endfor %}
+									</ul>
+								{% endmacro %}
+								
+								<ul class="col-md-12 float-left pb-1 block-group">
+								{% for group in branchs_groups %}
+									
+										<li class="item-branch-group item-branch-group-{{ group.id }}" data-id="{{ group.id }}" data-value="{{ group.name }}">
+    											<div class=" float-left pb-1">
+    												<input class="check-group" type="checkbox" name="group_{{ group.id }}" id="group-{{ group.id }}" value="{{ group.id }}" class="group"> &nbsp; {{ group.name|capitalize }}
+    											</div>
+										
+        										{% if group.group_branch is not empty %}
+        											{% import _self as macros %}
+        											{{ macros.render_group(group.group_branch, 1) }}
+        										{% endif %}
+										</li>
+									
+								{% endfor %}
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 float-left criteria-group-right">
+							<input type="hidden" name="option_right" checked  value="1" class="group-right">
+							<div class="row item-date">
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class="float-left criteria-date-radio ">
+											<label>
+												<input type="radio" name="option_group_date" checked value="1"> Date
+											</label>
+										</div>
+										<div class="float-left text-left criteria-date-radio-label">
+											<div class="block-fillter-start">
+												<input autocomplete="off" type="text" class="input-sm criteria-date " name="option_date_start" id="option_date_start" value="2020-08-25">
+											</div>
+											<div class="block-fillter-dash set-comparison compare-type-date" data-type="1"><i class="fa fa-plus"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio">
+											<label> <input type="radio" name="option_group_date" value="2"> Week
+											</label>
+										</div>
+										<div class=" float-left text-right pt-1 criteria-date-radio-label">
+											<div class="criteria-week text-left"  >
+												<div class="  block-fillter-start ">
+												<select name="option_week_year_start" id="option_week_year_start" class="">
+													{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+														<option value="{{ year }}">{{ year }}</option>
+													{% endfor %}
+												</select>
+												<select name="option_week_start" id="option_week_start" class="ml-1">
+													{% for key, week in week_format %}
+														<option value="{{ key }}">{{ week }}</option>
+													{% endfor %}
+												</select>
+												</div>
+												<div class="block-fillter-dash set-comparison compare-type-week hide"  data-type="2"><i class="fa fa-plus"></i></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio">
+											<label> <input type="radio" name="option_group_date" value="3"> Month
+											</label>
+										</div>
+										<div class=" float-left text-left pt-1 criteria-date-radio-label">
+											<div class="  criteria-week text-left "  >
+												<div class="block-fillter-start">
+    												<select name="option_month_year_start" id="option_month_year_start" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+    														<option value="{{ year }}">{{ year }}</option>
+    													{% endfor %}
+    												</select>
+    												<select name="option_month_start" id="option_month_start" class="ml-1">
+    													{% for key, month in range( 12, 1) %}
+    														<option value="{{ month }}">{{ (("now"|date("Y"))~'-'~ month ~'-1')|date("F") }}</option>
+    													{% endfor %}
+    												</select>
+												</div>
+												<div class="block-fillter-dash set-comparison compare-type-month hide" data-type="3"><i class="fa fa-plus"></i></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio ">
+											<label> <input type="radio" name="option_group_date" value="4"> Quarter
+											</label>
+										</div>
+										<div class=" float-left text-left pt-1 criteria-date-radio-label">
+											<div class=" input-group criteria-week text-left"  >
+												<div class="block-fillter-start">
+    												<select name="option_quarter_year_start" id="option_quarter_year_start" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+    														<option value="{{ year }}">{{ year }}</option>
+    													{% endfor %}
+    												</select>
+    												<select name="option_quarter_start" id="option_quarter_start" class="ml-1">
+    													{% for key, quarter in range( 4, 1) %}
+    														<option value="{{ quarter }}">Quarter&nbsp;{{ quarter }}</option>
+    													{% endfor %}
+    												</select>
+												</div>
+												<div class="block-fillter-dash set-comparison compare-type-quarter hide" data-type="4"><i class="fa fa-plus"></i></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio">
+											<label> <input type="radio" name="option_group_date" value="5"> Year
+											</label>
+										</div>
+										<div class=" float-left text-left pt-1 criteria-date-radio-label">
+											<div class=" input-group criteria-week text-left"  >
+												<div class="block-fillter-start">
+    												<select name="option_year_start" id="option_year_start" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+    														<option value="{{ year }}">{{ year }}</option>
+    													{% endfor %}
+    												</select>
+												</div>
+												<div class="block-fillter-dash set-comparison compare-type-year hide" data-type="5"><i class="fa fa-plus"></i></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<hr>
+									<div class="row">
+										<div class="col-md-2 float-left pt-1 criteria-label">
+											<label> <input type="checkbox" name="option_time" value="1"> Time
+											</label>
+										</div>
+										<div class="col-md-10 float-left text-right pt-1">
+											<div class=" input-group criteria-time text-right"  >
+												<input type="text" name="option_time_start" value="" placeholder="Start: 00:00" class="input-sm form-control">
+												<input type="text" name="option_time_end" value="" placeholder="End: 23:59" class="ml-1 input-sm form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row mt-2">
+										<div class="col-md-2 float-left pt-1 criteria-label">
+											<label><input type="checkbox" name="option_recurrence" id="option_recurrence"> Day
+											</label>
+										</div>
+										<div class="col-md-10 float-left text-right pt-1">
+											<div class="  input-group criteria-recurrence text-right ">
+												<label class=""> <input type="checkbox" name="option_day[]" value="2" class="recurrence ">&nbsp;Monday</label>
+												<label class=""> <input type="checkbox" name="option_day[]" value="3" class="recurrence ">&nbsp;Tuesday</label>
+												<label class=""> <input type="checkbox" name="option_day[]" value="4" class="recurrence ">&nbsp;Wednesday</label>
+												<label class=""> <input type="checkbox" name="option_day[]" value="5" class="recurrence ">&nbsp;Thursday</label>
+												<label class=""> <input type="checkbox" name="option_day[]" value="6" class="recurrence ">&nbsp;Friday</label>
+												<label class=""> <input type="checkbox" name="option_day[]" value="7" class="recurrence ">&nbsp;Saturday</label>
+												<label class=""> <input type="checkbox" name="option_day[]" value="1" class="recurrence ">&nbsp;Sunday</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row mt-2 ">
+										<div class="col-md-12 float-left text-right pt-1">
+											<div class=" input-group criteria-staff text-right">
+												<label class=""> <input type="checkbox" name="option_entrance" value="1" >&nbsp;Entrance</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<hr>
+									<div class="row">
+										<div class="col-md-12 compare-date-selected">
+											<!-- 
+    										<div class="compare-type-date" style="">
+    											<span class="row col-md-12" id="date-{{ 'now'|date_modify("-1 day")|date("Y-m-d") }}">
+    												<input checked="" type="checkbox" name="option_compare_date[]" value="{{ 'now'|date_modify("-1 day")|date("Y-m-d") }}"> 
+    												&nbsp; {{ 'now'|date_modify("-1 day")|date("Y-m-d") }} &nbsp;
+    												<i class="fa fa-minus remove-compare-date" data-id="date-{{ 'now'|date_modify("-1 day")|date("Y-m-d") }}"></i>
+    											</span>
+    											<span class="row col-md-12" id="date-{{ 'now'|date('Y-m-d') }}">
+    												<input checked="" type="checkbox" name="option_compare_date[]" value="{{ 'now'|date('Y-m-d') }}">
+    												&nbsp; {{ 'now'|date('Y-m-d') }} &nbsp;
+    												<i class="fa fa-minus remove-compare-date" data-id="date-{{ 'now'|date('Y-m-d') }}"></i>
+    											</span>
+    										</div>
+    										 -->
+    										<div class="compare-type-date" style="">
+    											<span class="row col-md-12" id="date-2020-01-01">
+    												<input checked="" type="checkbox" name="option_compare_date[]" value="2020-01-01"> 
+    												&nbsp; 2020-01-01 &nbsp;
+    												<i class="fa fa-minus remove-compare-date" data-id="date-2020-01-01"></i>
+    											</span>
+    											<span class="row col-md-12" id="date-2020-01-02">
+    												<input checked="" type="checkbox" name="option_compare_date[]" value="2020-01-02">
+    												&nbsp; 2020-01-02 &nbsp;
+    												<i class="fa fa-minus remove-compare-date" data-id="date-2020-01-02"></i>
+    											</span>
+    										</div>
+    										<div class="compare-type-week hide" style="display: none;">
+    										</div>
+    										<div class="compare-type-month hide" style="display: none;">
+    										</div>
+    										<div class="compare-type-quarter hide" style="display: none;">
+    										</div>
+    										<div class="compare-type-year hide" style="display: none;">
+    										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row pt-2 mb-5 item-event hide">
+								<div class=" col-md-2 float-left pt-1 criteria-select">
+									<select name="option_event_year" id="event_year">
+										{% for year in range(("now"|date("Y")),("now"|date("Y"))-10) %}
+											<option value="{{ year }}">{{ year }}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="col-md-10 float-left text-right pt-1 pb-3 criteria-input criteria-search-event">
+									<input type="text" name="option_search_event" id="criteria_search_event" value="" placeholder="Event Name" class="input-sm form-control">
+								</div>
+								<div class="col-md-12 float-left pb-1 block-event">
+									<div class="row item-event item-event-0" data-id="0" data-value="0">
+										<div class="col-md-12 float-left pb-1">
+											<input type="checkbox" name="event_0" id="event_0" value="0" class="event"> &nbsp;Select All
+										</div>
+									</div>
+								</div>
+								{% for event in events %}
+									<div class="col-md-12 float-left pb-1 block-event item-event-child">
+										<div class="row item-block-event item-event-{{ event.id }}" data-id="{{ event.id }}" data-value="{{ event.name }}">
+											<div class="col-md-12 float-left pb-1">
+												<input type="checkbox" name="option_event[]" id="event_{{ event.id }}" value="{{ event.id }}" class="event"> &nbsp; {{ event.name|capitalize }}
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

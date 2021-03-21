@@ -1,0 +1,28 @@
+<div class="row pt-2 mb-5 item-event hide">
+								<div class=" col-md-2 float-left pt-1 criteria-select">
+									<select name="option_event_year" id="event_year">
+										{% for year in range(("now"|date("Y")),("now"|date("Y"))-10) %}
+											<option value="{{ year }}">{{ year }}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="col-md-10 float-left text-right pt-1 pb-3 criteria-input criteria-search-event">
+									<input type="text" name="option_search_event" id="criteria_search_event" value="" placeholder="Event Name" class="input-sm form-control">
+								</div>
+								<div class="col-md-12 float-left pb-1 block-event">
+									<div class="row item-event item-event-0" data-id="0" data-value="0">
+										<div class="col-md-12 float-left pb-1">
+											<input type="checkbox" name="event_0" id="event_0" value="0" class="event_all"> &nbsp;Select All
+										</div>
+									</div>
+								</div>
+								{% for event in events %}
+									<div class="col-md-12 float-left pb-1 block-event item-event-child">
+										<div class="row item-block-event item-event-{{ event.id }}" data-id="{{ event.id }}" data-value="{{ event.name }}">
+											<div class="col-md-12 float-left pb-1">
+												<input type="checkbox" name="option_event[]" id="event_{{ event.id }}" value="{{ event.id }}" class="event"> &nbsp; {{ event.name|capitalize }}
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>

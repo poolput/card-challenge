@@ -1,0 +1,174 @@
+{% extends "layout/index.html" %}
+
+{% block head %}
+{{ parent() }}
+
+<style>
+ 
+    .square {
+        border-radius:0 !important;
+    }
+    table tr th, table tr td {
+       vertical-align: middle !important;
+    }
+    .center {
+       text-align: center;
+    }
+    .left {
+       text-align: left !important;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-4">
+                            <div class="page-header-breadcrumb">
+                                {{ breadcrumb|raw }}
+                            </div>
+                        </div>
+                        <div class="col-lg-8 text-right">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>
+                                        {{ title_body }}
+                                    </h4>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="card">
+                          
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table id="camera-data" class="table compact table-striped table-bordered nowrap dataTable" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center" style="width: 1%;white-space:nowrap !important;">#</th>
+                                                    <th class="left">Camera Group</th>     
+                                                    <th class="left">Branch Name</th>                            
+                                                    <th class="center" style="width: 1%;white-space:nowrap !important;">Amount</th>                     
+                                                    <th class="left">Description</th>       
+                                                    <th class="center"  style="width: 1%;white-space:nowrap !important;">Transportation</th>
+                                                    <th class="center"  style="width: 1%;white-space:nowrap !important;">Location</th>
+                                                    <th class="center"  style="width: 1%;white-space:nowrap !important;">Option</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                 {% for cameragroup in cameragroups %}                                                    
+                                                    <tr>
+                                                        <td class="center">{{ loop.index }}</td>
+                                                        <td>{{ cameragroup.camera_group_name }}</td>          
+                                                        <td>{{ cameragroup.branch_name }}</td> 
+                                                        <td class="center">{{ cameragroup.amount }}</td>
+                                                        <td>{{ cameragroup.camera_group_desc }}</td> 
+                                                        <td  class="center">{{ cameragroup.transportation }}</td> 
+                                                        <td  class="center">{{ cameragroup.location }}</td>                                                                                                                                
+                                                        <td class="center">
+                                                            <a class="btn btn-primary btn-sm" href="{{ base_url }}/camera-group/edit/{{ cameragroup.camera_group_id }}"><span>Edit</span></a>
+                                                            <a class="btn btn-secondary btn-sm" href="{{ base_url }}/camera-group/delete/{{ cameragroup.camera_group_id }}"><span>Delete</span></a>
+                                                        </td>
+                                                    </tr>                                                  
+                                                {%  endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+    <script src="{{ base_url }}/theme/bower_components/datatables.net/js/jquery.dataTables.min.js" ></script>
+    <script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js" ></script>
+    
+    <script src="{{ base_url }}/theme/assets/pages/data-table/js/jszip.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/js/pdfmake.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/js/vfs_fonts.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/dataTables.buttons.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/buttons.flash.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/jszip.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/pdfmake.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/vfs_fonts.js" ></script>
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/buttons.colVis.min.js" ></script>
+    
+    <script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.print.min.js" ></script>
+    <script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.html5.min.js" ></script>
+    <script src="{{ base_url }}/theme/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" ></script>
+    <script src="{{ base_url }}/theme/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" ></script>
+    <script src="{{ base_url }}/theme/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" ></script>
+
+    <script  src="{{ base_url }}/theme/bower_components/i18next/js/i18next.min.js"></script>
+    <script  src="{{ base_url }}/theme/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+    <script  src="{{ base_url }}/theme/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+    <script  src="{{ base_url }}/theme/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+
+    <!-- multiselect 2 -->
+     <script  src="{{ base_url }}/theme/bower_components/multiselect2/lib/google-code-prettify/prettify.css"></script>
+    <script  src="{{ base_url }}/theme/bower_components/multiselect2/css/style.css"></script>
+    <script  src="{{ base_url }}/theme/bower_components/multiselect2/dist/js/prettify.min.js"></script>
+    <script  src="{{ base_url }}/theme/bower_components/multiselect2/dist/js/multiselect.min.js"></script>
+
+    <script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/extension-btns-custom.js" ></script>
+    <script src="{{ base_url }}/theme/assets/js/pcoded.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js" ></script>
+    <script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js" ></script>
+    <script  src="{{ base_url }}/theme/assets/js/script.js"></script>
+    
+    <script>
+         $(function() {         
+             
+            $('#camera-data').DataTable({
+            	"lengthMenu": [[15,30, 50, 100], [15,30, 50, 100]],
+            	"columnDefs": [ {
+            		"targets": 7, "orderable": false
+        		} ],
+                dom : 'Bfrtip',
+                buttons : [{
+                    text : '+ Add',
+                    className : 'btn btn-secondary',
+                    action : function(e, dt, node, config) {
+                        window.location.href="{{ base_url }}/camera-group/add";
+                    }    
+                }]
+            });
+            $('.dt-button').removeClass('dt-button');            
+        });
+ 
+        function delitem(cid) {             
+          var url = '{{ base_url }}/camera-group/delete/'+cid;
+           $.post(url, function(response) {                    
+                alert(response); 
+                window.location.href="{{ base_url }}/camera-group";      
+            });     
+       }
+       
+    </script>
+{% endblock %}

@@ -1,0 +1,58 @@
+<div class="row pt-2 item-group hide">
+	<div class=" input-group criteria-search ml-3 pb-3">
+		<input type="text" name="option_search_group" id="criteria_search_group" value="" placeholder="Group Name" class="input-sm form-control">
+	</div>
+	
+	{% macro render_group(data, i) %}
+		{% import _self as macros %}
+		
+		<ul>
+		{% for level in data %}
+			<li class="row col-md-12 item-branch-group item-branch-group-{{ level.id }} item-child-{{ i }}" data-id="{{ level.id }}" data-value="{{ level.name }}">
+					<div class=" float-left ml-4 pt-1 block-group">
+						<input class="check-group" type="checkbox" name="level[]" value="{{ level.id }}"> &nbsp; {{ level.name|capitalize }}
+					</div>
+			
+					{% if level.branch_id is not empty %}
+						<ul class="row col-md-12 item-branch-group item-branch-group-{{ level.branch_id }} item-child-{{ i+1 }}" data-id="{{ level.branch_id }}" data-value="{{ level.branch_name }}">
+							<div class=" float-left ml-4 pt-1 block-group">
+								<input class="check-group" type="checkbox" name="level[]" value="{{ level.branch_id }}"> &nbsp; {{ level.branch_name|capitalize }}
+							</div>
+						
+						{% for group_camera in level.group_camera %}
+							{% if group_camera.id is not empty %}
+								<li class="row col-md-12  group-item-branchgroup item-group-{{ group_camera.id }} item-child-{{ i+2 }} parent-{{ branch.id }}" data-id="{{ group_camera.id }}" data-value="{{ group_camera.name }}">
+									<div class=" float-left ml-4 pt-1 block-group">
+										<input class="check-camera-group" type="checkbox" name="option_group_camera[]" value="{{ group_camera.id }}"  > &nbsp; {{ group_camera.name|capitalize }}
+									</div>
+								</li>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					{% endif %}
+					
+					{% if level.group_branch is not empty %}
+					    {{ macros.render_group(level.group_branch, i+1) }}
+				    {% endif %}
+		    </li>
+		{% endfor %}
+		</ul>
+	{% endmacro %}
+	
+	<ul class="col-md-12 float-left pb-1 block-group">
+	{% for group in branchs_groups %}
+		
+			<li class="item-branch-group item-branch-group-{{ group.id }}" data-id="{{ group.id }}" data-value="{{ group.name }}">
+					<div class=" float-left pb-1">
+						<input class="check-group" type="checkbox" name="group_{{ group.id }}" id="group-{{ group.id }}" value="{{ group.id }}" class="group"> &nbsp; {{ group.name|capitalize }}
+					</div>
+			
+					{% if group.group_branch is not empty %}
+						{% import _self as macros %}
+						{{ macros.render_group(group.group_branch, 1) }}
+					{% endif %}
+			</li>
+		
+	{% endfor %}
+	</ul>
+</div>

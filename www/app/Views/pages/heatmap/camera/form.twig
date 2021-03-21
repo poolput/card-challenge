@@ -1,0 +1,258 @@
+{% extends "layout/index.html" %}
+{% block head %}
+{{ parent() }}
+
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/bower_components/select2/css/select2.min.css">
+<style>
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    background-color: #fff !important;
+  }
+  .select2-container .select2-selection--single {
+    height: auto !important;
+  }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+			<div class="page-wrapper">
+				<div class="page-header">
+					<div class="row align-items-end">
+						<div class="col-lg-4">
+							<div class="page-header-breadcrumb">
+								{{ breadcrumb|raw }}
+							</div>
+						</div>
+						<div class="col-lg-8 text-right">
+							<div class="page-header-title">
+								<div class="d-inline">
+									<h4>
+										{{ title_body }}
+									</h4>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-body">
+					<div class="row">
+
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-block">
+									<!--<div class="alert alert-warning background-warning">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<i class="icofont icofont-close-line-circled text-white"></i>
+										</button>
+										<strong>Warning!</strong> Add Class
+										<code>{{ app.request('email')}}</code>
+									</div>-->
+									<h4 class="sub-title">Heatmap Camera Inputs</h4>
+									<form action="" method="post" autocomplete="on" id="form_hmcam" enctype="multipart/form-data">
+										<input type="hidden" name="camera_id" id="camera_id" value="{{ camera.camera_id }}">
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Camera Name<span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="camera_name" id="camera_name" value="{{ camera.camera_name }}"> <span class="messages"><p class="text-danger error">
+														{{ incurrect_message }}
+													</p></span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Camera Model<span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="camera_model" id="camera_model" value="{{ camera.camera_model }}"> <span class="messages"><p class="text-danger error">
+														{{ incurrect_message }}
+													</p></span>
+											</div>
+										</div>
+                    <div class="form-group row">
+											<label class="col-sm-2 col-form-label">Camera Height<span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="camera_height" id="camera_height" value="{{ camera.camera_height }}"> <span class="messages"><p class="text-danger error">
+														{{ incurrect_message }}
+													</p></span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">IP Address<span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="camera_ip" id="camera_ip" value="{{ camera.camera_ip }}"> <span class="messages"><p class="text-danger error">
+														{{ incurrect_message }}
+													</p></span>
+											</div>
+										</div>
+										<!--<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Mac Address</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="camera_mac_address" id="camera_mac_address" value="{# camera.camera_mac_address #}"> <span class="messages"><p class="text-danger error">
+														{# incurrect_message #}
+													</p></span>
+											</div>
+										</div>-->
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Floor<span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="camera_floor" id="camera_floor" value="{{ camera.floor }}"> <span class="messages"><p class="text-danger error">
+														{{ incurrect_message }}
+													</p></span>
+											</div>
+										</div>
+                    <div class="form-group row">
+											<label class="col-sm-2 col-form-label">Branch<span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+                        <select class="form-control" name="cameara_branch" id="cameara_branch">
+                            <option value="">---Please Select Branch---</option>
+                          {% for branch in branchs %}
+                            {% if camera.branch_id == branch.branch_id %}
+                              <option value="{{ branch.branch_id }}" selected>{{branch.branch_name}}</option>
+                            {% else %}
+                              <option value="{{ branch.branch_id }}">{{branch.branch_name}}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+                        <span class="messages"><p class="text-danger error">{{ incurrect_message }}</p></span>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12 text-right">
+												<button type="button" class="btn btn-outline-secondary btn-cancel">Cancel</button>
+												<button type="submit" class="btn btn-secondary btn-save">&nbsp; Save &nbsp;</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+<script src="{{ base_url }}/theme/bower_components/i18next/js/i18next.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/select2/js/select2.full.min.js"></script>
+
+<script src="{{ base_url }}/theme/assets/js/pcoded.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/script.js"></script>
+
+<script>
+      $(document).ready(function(){
+
+        function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+              reader.onload = function(e) {
+                if(input.id == 'company_logo'){
+                  $('#company_logo_img').attr('src', e.target.result);
+                }else if(input.id == 'company_mobile_logo'){
+                  $('#company_mobile_logo_img').attr('src', e.target.result);
+                }
+              }
+              reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+          }
+
+          function setInputFilter(textbox, inputFilter) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+              textbox.addEventListener(event, function() {
+                if (inputFilter(this.value)) {
+                  this.oldValue = this.value;
+                  this.oldSelectionStart = this.selectionStart;
+                  this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                  this.value = this.oldValue;
+                  this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                  this.value = "";
+                }
+              });
+            });
+          }
+
+          $("#cameara_branch").select2();
+
+          setInputFilter(document.getElementById("camera_height"), function(value) {
+                          return /^-?\d*$/.test(value); });
+
+          $('.btn-cancel').click(function() {
+            window.history.back();
+          });
+
+          $('.btn-save').click(function() {
+            $('.messages').hide();
+
+            var company_chk = 0;
+            var company_name = $("#company_name").val();
+            var company_owner = $("#company_owner").val();
+            var company_website = $("#company_website").val();
+            var company_email = $("#company_email").val();
+            var company_phone = $("#company_phone").val();
+            var company_address = $("#company_address").val();
+            var company_country = $("#company_country").val();
+            var company_province = $("#company_province").val();
+            var company_state = $("#company_state").val();
+            var company_zipcode = $("#company_zipcode").val();
+
+            if(company_name == ''){
+              $('#company_name').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_owner == ''){
+              $('#company_owner').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_website == ''){
+              $('#company_website').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_email == ''){
+              $('#company_email').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_phone == ''){
+              $('#company_phone').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_address == ''){
+              $('#company_address').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_country == ''){
+              $('#company_country').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_province == ''){
+              $('#company_province').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_state == ''){
+              $('#company_state').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+            if(company_zipcode == ''){
+              $('#company_zipcode').parent('div').find('.messages').show();
+              company_chk = 1;
+            }
+
+            if(company_chk == 1){
+              return false;
+            }
+          });
+
+      });
+</script>
+{% endblock %}

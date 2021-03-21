@@ -1,0 +1,153 @@
+<div class="col-md-6 float-left criteria-group-right">
+	<input type="hidden" name="option_right" checked  value="1" class="group-right">
+	<div class="row item-date">
+		<div class="col-md-12 float-left">
+			<div class="row ">
+				<div class="float-left criteria-date-radio ">
+					<label>
+						<input type="radio" name="option_group_date" checked value="1"> Date
+					</label>
+				</div>
+				<div class="float-left text-left criteria-date-radio-label">
+					<div class="block-fillter-start">
+						<input autocomplete="off" type="text" class="input-sm criteria-date " name="option_date_start" id="option_date_start" value="2020-08-25">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<div class="row ">
+				<div class=" float-left pt-1 criteria-date-radio">
+					<label> <input type="radio" name="option_group_date" value="2"> Week
+					</label>
+				</div>
+				<div class=" float-left text-right pt-1 criteria-date-radio-label">
+					<div class="criteria-week text-left"  >
+						<div class="  block-fillter-start ">
+						<select name="option_week_year_start" id="option_week_year_start" class="">
+							{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+								<option value="{{ year }}">{{ year }}</option>
+							{% endfor %}
+						</select>
+						<select name="option_week_start" id="option_week_start" class="ml-1">
+							{% for key, week in week_format %}
+								<option value="{{ key }}">{{ week }}</option>
+							{% endfor %}
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<div class="row ">
+				<div class=" float-left pt-1 criteria-date-radio">
+					<label> <input type="radio" name="option_group_date" value="3"> Month
+					</label>
+				</div>
+				<div class=" float-left text-left pt-1 criteria-date-radio-label">
+					<div class="  criteria-week text-left "  >
+						<div class="block-fillter-start">
+							<select name="option_month_year_start" id="option_month_year_start" class="">
+								{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+									<option value="{{ year }}">{{ year }}</option>
+								{% endfor %}
+							</select>
+							<select name="option_month_start" id="option_month_start" class="ml-1">
+								{% for key, month in range( 12, 1) %}
+									<option value="{{ month }}">{{ (("now"|date("Y"))~'-'~ month ~'-1')|date("F") }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<div class="row ">
+				<div class=" float-left pt-1 criteria-date-radio ">
+					<label> <input type="radio" name="option_group_date" value="4"> Quarter
+					</label>
+				</div>
+				<div class=" float-left text-left pt-1 criteria-date-radio-label">
+					<div class=" input-group criteria-week text-left"  >
+						<div class="block-fillter-start">
+							<select name="option_quarter_year_start" id="option_quarter_year_start" class="">
+								{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+									<option value="{{ year }}">{{ year }}</option>
+								{% endfor %}
+							</select>
+							<select name="option_quarter_start" id="option_quarter_start" class="ml-1">
+								{% for key, quarter in range( 4, 1) %}
+									<option value="{{ quarter }}">Quarter&nbsp;{{ quarter }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<div class="row ">
+				<div class=" float-left pt-1 criteria-date-radio">
+					<label> <input type="radio" name="option_group_date" value="5"> Year
+					</label>
+				</div>
+				<div class=" float-left text-left pt-1 criteria-date-radio-label">
+					<div class=" input-group criteria-week text-left"  >
+						<div class="block-fillter-start">
+							<select name="option_year_start" id="option_year_start" class="">
+								{% for year in range(("now"|date("Y")),("now"|date("Y"))-5) %}
+									<option value="{{ year }}">{{ year }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<hr>
+			<div class="row">
+				<div class="col-md-2 float-left pt-1 criteria-label">
+					<label> <input type="checkbox" name="option_time" value="1"> Time
+					</label>
+				</div>
+				<div class="col-md-10 float-left text-right pt-1">
+					<div class=" input-group criteria-time text-right"  >
+						<input type="text" name="option_time_start" value="" placeholder="Start: 00:00" class="input-sm form-control">
+						<input type="text" name="option_time_end" value="" placeholder="End: 23:59" class="ml-1 input-sm form-control">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<div class="row mt-2">
+				<div class="col-md-2 float-left pt-1 criteria-label">
+					<label><input type="checkbox" name="option_recurrence" id="option_recurrence"> Day
+					</label>
+				</div>
+				<div class="col-md-10 float-left text-right pt-1">
+					<div class="  input-group criteria-recurrence text-right ">
+						<label class=""> <input type="checkbox" name="option_day[]" value="2" class="recurrence ">&nbsp;Monday</label>
+						<label class=""> <input type="checkbox" name="option_day[]" value="3" class="recurrence ">&nbsp;Tuesday</label>
+						<label class=""> <input type="checkbox" name="option_day[]" value="4" class="recurrence ">&nbsp;Wednesday</label>
+						<label class=""> <input type="checkbox" name="option_day[]" value="5" class="recurrence ">&nbsp;Thursday</label>
+						<label class=""> <input type="checkbox" name="option_day[]" value="6" class="recurrence ">&nbsp;Friday</label>
+						<label class=""> <input type="checkbox" name="option_day[]" value="7" class="recurrence ">&nbsp;Saturday</label>
+						<label class=""> <input type="checkbox" name="option_day[]" value="1" class="recurrence ">&nbsp;Sunday</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 float-left">
+			<div class="row mt-2 ">
+				<div class="col-md-12 float-left text-right pt-1">
+					<div class=" input-group criteria-staff text-right">
+						<label class=""> <input type="checkbox" name="option_entrance" value="1" >&nbsp;Entrance</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

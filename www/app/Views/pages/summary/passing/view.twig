@@ -1,0 +1,188 @@
+{% extends "layout/index.html" %}
+
+{% block head %}
+{{ parent() }}
+
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/pages/j-pro/css/j-forms.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/feather/css/feather.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons.min.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons-wind.min.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/p-loader.css">
+<style type="text/css">
+#branch_select_div{
+    float: right;
+    padding-top: 36px;
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+			<div class="page-wrapper">
+				<div class="page-header">
+					<div class="row align-items-end">
+						<div class="col-lg-4">
+							<div class="page-header-breadcrumb">
+								{{ breadcrumb|raw }}
+							</div>
+						</div>
+						<div class="col-lg-8 text-right">
+							<div class="page-header-title">
+								<div class="d-inline">
+									<h4>
+										 {{ page_title }}
+									</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								{% block criteria %}
+								{% include 'filter/criteria.twig' with { 'base_url': base_url } %}
+								{% endblock %}
+							</div>
+						</div>
+					</div>
+					<div class="loader animation-start d-none">
+                        <span class="circle delay-1 size-2"></span>
+                        <span class="circle delay-2 size-4"></span>
+                        <span class="circle delay-3 size-6"></span>
+                        <span class="circle delay-4 size-7"></span>
+                        <span class="circle delay-5 size-7"></span>
+                        <span class="circle delay-6 size-6"></span>
+                        <span class="circle delay-7 size-4"></span>
+                        <span class="circle delay-8 size-2"></span>
+                    </div>
+					<div id="page-content" style="display:none;">
+                        <div id="top-card-div">
+
+                    	</div>
+    					<div class="row">
+    						<div class="col-sm-12">
+    							<div class="card">
+									<div class="card-header">
+										<div class="row">
+											<div class="col-sm-8 ">
+												<div class="location-title"></div>
+												<div class="collapse" id="collapse_location">
+													<div class="location-selected"></div>
+												</div>
+												<div class="period-selected"></div>
+											</div>
+                                            <div class="col-md-4" id="branch_select_div">
+                                                <select class="form-control" id="branch_select"></select>
+                                            </div>
+										</div>
+										<div class="row btn-option">
+											<div class="col-sm-12">
+												<div class="float-right">
+													<button data-type="line" type="button"
+														class="series-type btn btn-outline-secondary btn-mini waves-effect waves-light "
+														id="pdfButton">
+														<i class="fa fa-minus"></i>Line
+													</button>
+													<button data-type="area" type="button"
+														class="series-type btn btn-outline-secondary btn-mini waves-effect waves-light "
+														id="pdfButton">
+														<i class="fa fa-picture-o"></i>Area
+													</button>
+													<button data-type="column" type="button"
+														class="series-type btn btn-outline-secondary btn-mini waves-effect waves-light "
+														id="pdfButton">
+														<i class="fa fa-product-hunt"></i>Bar
+													</button>
+													<button type="button"
+														class="btn btn-secondary btn-mini waves-effect waves-light"
+														id="excelButton">
+														<i class="fa fa-file-excel-o"></i>Excel
+													</button>
+													<button type="button"
+														class="btn btn-secondary btn-mini waves-effect waves-light"
+														id="pdfButton">
+														<i class="fa fa-file-pdf-o"></i>PDF
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card-block chart-div">
+
+                                    </div>
+    							</div>
+    						</div>
+    					</div>
+    					<div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                     <div class="card-block table-div">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/highcharts.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/series-label.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/exporting.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/export-data.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/accessibility.js"></script>
+<!-- datatable -->
+<script src="{{ base_url }}/theme/bower_components/datatables.net/js/jquery.dataTables.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.print.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.html5.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" ></script>
+
+ <script src="{{ base_url }}/theme/assets/pages/advance-elements/moment-with-locales.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ base_url }}/theme/assets/pages/advance-elements/bootstrap-datetimepicker.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/bootstrap-daterangepicker/js/daterangepicker.js"></script>
+
+<script type="text/javascript" src="{{ base_url }}/theme/assets/js/SmoothScroll.js"></script>
+<script src="{{ base_url }}/theme/assets/js/pcoded.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js"></script>
+<script type="text/javascript" src="{{ base_url }}/theme/assets/js/script.js"></script>
+
+<script type="text/javascript" src="{{ base_url }}/theme/assets/pages/j-pro/js/custom/popup-menu-form.js"></script>
+<script type="text/javascript" src="{{ base_url }}/theme/assets/js/common-pages.js"></script>
+
+<!-- custom js -->
+<script src="{{ base_url }}/theme/assets/js/service.js"></script>
+<script src="{{ base_url }}/theme/assets/js/criteria.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_location.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_group.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_date.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_event.js"></script>
+<script src="{{ base_url }}/theme/assets/js/passing.js"></script>
+
+<script>
+
+// fnPassing.renderChart();
+
+// fnService.getStaff();
+// fnService.getLocation();
+// fnService.getPeriod();
+
+</script>
+{% endblock %}

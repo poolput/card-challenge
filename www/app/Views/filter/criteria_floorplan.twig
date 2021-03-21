@@ -1,0 +1,253 @@
+<style type="text/css">
+	#btn-date-header-block{
+		padding-left: 30px;
+	}
+
+	.criteria-branch_select{
+		margin-top: -14px;
+    	padding-left: 30px;
+	}
+
+	.criteria-working_time{
+    	padding-left: 30px;
+	}
+
+	.criteria-seach{
+    	margin-top: -14px;
+    	padding-right: 30px;
+	}
+	.seacrh-header{
+		padding: 6px;
+	}
+
+	.popup-list-wrapper {
+	    max-width: 374px !important;
+	}
+
+	.popup-list-wrapper .content {
+	    min-height: 238px;
+	}
+
+	.block-fillter-end {
+	     max-width: unset; 
+	}
+
+	#option_week_end{
+	    max-width: 174px !important;
+	}
+
+	#option_month_end{
+	    max-width: 174px !important;
+	}
+
+	.criteria-date-radio {
+	    flex: 0 0 25%;
+	    max-width: 25%;
+	    padding-left: 15px;
+	}
+
+	.criteria-date-radio-label {
+	    flex: 0 0 75%;
+	    max-width: 75%;
+	}
+
+</style>
+<div class="row seacrh-header" id="criteria">
+		<h5 class="pl-4 page-title">{{ page_title }}</h5>
+	<div class="col">
+	</div>
+	<div class="col-md-3 criteria-branch_select">
+		<select class="form-control" id="branch_id" name="branch_id">
+			<option selected value="">-- Select Branch --</option>
+			{% for branch in branchs %}
+				<option value="{{ branch.branch_id }}">{{ branch.branch_name }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	
+	<div class="col-md-3 criteria-branch_select">
+		<select class="form-control" id="map_id" name="map_id">
+			<option selected value="">-- Select Floorplan --</option>
+		</select>
+	</div>
+
+    <!-- <div class="col-md-3 criteria-working_time"> -->
+		<!-- <input type="checkbox" name="working_time" id="working_time" value="1" class="branch"> &nbsp; 
+		<label for="working_time"> Time : <span id="working_time_txt">10:00-22:00</span> </label> -->
+	<!-- </div> -->
+
+	<div class="col criteria-seach text-right">
+
+		<button class="popup-list-open btn btn-outline-secondary  waves-effect waves-light " type="button" id="search-more">
+			More <span class="triangle_down"></span>
+		</button>
+		<button class="btn btn-secondary" id="search" disabled>Load Data</button>
+	</div>
+</div>
+
+<div class="search-body">
+	<div class="popup-list-open"  >
+		<div class="popup-list-wrapper">
+			<form action="#" method="post" class="j-forms" id="criteria-form">
+				<div class="content">
+					<div class="row">
+						
+						<div class="col-md-12 float-left">
+							<input type="hidden" name="option_left" value="1">
+							<input type="hidden" name="option_right" value="1">
+							<div class="row pt-2 item-date">
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio ">
+											<label> <input type="radio" name="option_group_date"  checked value="1"> Date
+											</label>
+										</div>
+										<div class="  float-left text-left criteria-date-radio-label">
+											<div class="block-fillter-start hidden">
+												<input autocomplete="off" type="text" class="input-sm criteria-date option-date-start"  name="option_date_start" value="{{ criteria_date.start }}" readonly>
+											</div>
+											
+											<div class="block-fillter-end">
+												<input autocomplete="off" type="text" class="input-sm criteria-date  option-date-end" name="option_date_end" value="{{ criteria_date.end }}" readonly>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio">
+											<label> <input type="radio" name="option_group_date" value="2"> Week
+											</label>
+										</div>
+										<div class=" float-left text-right pt-1 criteria-date-radio-label">
+											<div class="criteria-week text-left"  >
+												<div class="  block-fillter-start hidden">
+    												<select name="option_week_year_start" id="option_week_year_start" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-10) %}
+    														{% if year == criteria_week.start_week_year %}
+    														<option selected value="{{ year }}">{{ year }}</option>
+    														{% else %}
+    														<option value="{{ year }}">{{ year }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+    												<select name="option_week_start" id="option_week_start" class="ml-1">
+    													{% for key, week in week_format %}
+    														{% if key == criteria_week.start_week %}
+    														<option selected value="{{ key }}">{{ week }}</option>
+    														{% else %}
+    														<option value="{{ key }}">{{ week }}</option>
+    														{% endif %}
+    													}
+    													{% endfor %}
+    												</select>
+												</div>
+												
+												<div class="  block-fillter-end">
+    												<select name="option_week_year_end" id="option_week_year_end" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-10) %}
+    														{% if year == criteria_week.end_week_year %}
+    														<option selected value="{{ year }}">{{ year }}</option>
+    														{% else %}
+    														<option value="{{ year }}">{{ year }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+    												<select name="option_week_end" id="option_week_end" class="ml-1">
+    													{% for key, week in week_format %}
+    														{% if key == criteria_week.end_week %}
+    														<option selected value="{{ key }}">{{ week }}</option>
+    														{% else %}
+    														<option value="{{ key }}">{{ week }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 float-left">
+									<div class="row ">
+										<div class=" float-left pt-1 criteria-date-radio">
+											<label> <input type="radio" name="option_group_date" value="3"> Month
+											</label>
+										</div>
+										<div class=" float-left text-left pt-1 criteria-date-radio-label">
+											<div class="  criteria-week text-left "  >
+												<div class="block-fillter-start hidden">
+    												<select name="option_month_year_start" id="option_month_year_start" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-10) %}
+    														{% if year == criteria_month.start_month_year %}
+    														<option selected value="{{ year }}">{{ year }}</option>
+    														{% else %}
+    														<option value="{{ year }}">{{ year }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+    												<select name="option_month_start" id="option_month_start" class="ml-1">
+    													{% for key, month in range( 12, 1) %}
+    														{% if month == criteria_month.start_month %}
+    														<option selected value="{{ month }}">{{ (("now"|date("Y"))~'-'~ month ~'-1')|date("F") }}</option>
+    														{% else %}
+    														<option value="{{ month }}">{{ (("now"|date("Y"))~'-'~ month ~'-1')|date("F") }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+												</div>
+												
+												<div class="block-fillter-end">
+    												<select name="option_month_year_end" id="option_month_year_end" class="">
+    													{% for year in range(("now"|date("Y")),("now"|date("Y"))-10) %}
+    														{% if year == criteria_month.end_month_year %}
+    														<option selected value="{{ year }}">{{ year }}</option>
+    														{% else %}
+    														<option value="{{ year }}">{{ year }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+    												<select name="option_month_end" id="option_month_end" class="ml-1">
+    													{% for key, month in range( 12, 1) %}
+    														{% if month == criteria_month.end_month %}
+    														<option selected value="{{ month }}">{{ (("now"|date("Y"))~'-'~ month ~'-1')|date("F") }}</option>
+    														{% else %}
+    														<option value="{{ month }}">{{ (("now"|date("Y"))~'-'~ month ~'-1')|date("F") }}</option>
+    														{% endif %}
+    													{% endfor %}
+    												</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-12 float-left">
+									<hr>
+									<div class="row">
+										<div class="col-md-3 float-left pt-1 criteria-label">
+											<label> <input type="checkbox" name="option_time" value="1"> Time
+											</label>
+										</div>
+										<div class="col-md-9 float-left text-right pt-1">
+											<div class=" input-group criteria-time text-right"  >
+												<input type="text" name="option_time_start" value="" placeholder="Start: 00:00" class="input-sm form-control">
+												<input type="text" name="option_time_end" value="" placeholder="End: 23:59" class="ml-1 input-sm form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<input type="hidden" id="option_branch" name="option_branch[]" value="">
+								<div id="hidden_cam_group"></div>
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+

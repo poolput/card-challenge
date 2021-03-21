@@ -1,0 +1,78 @@
+<div class="row seacrh-header" id="criteria">
+	<div id="btn-title-header-block">
+		<div class=" row">
+			<div class="col-md-8 float-left ">
+    			<h5 class="pl-4 page-title">
+    				{{ page_title }}
+    			</h5>
+			</div>
+		</div>
+	</div>
+	<div id="btn-date-header-block">
+    	<div class="input-daterange input-group" id="datepicker">
+    		<input autocomplete="off" type="text" class="input-sm form-control date-start" name="start" value="{{ 'now'|date('Y-m-d') }}"> 
+    		<span class="input-to pt-2">-</span> 
+    		<input autocomplete="off" type="text" class="input-sm form-control date-end" name="end" value="{{ 'now'|date('Y-m-d') }}">
+    	</div>
+    </div>
+	<div id="btn-search-header-block">
+		<button class="popup-list-open btn btn-outline-secondary  waves-effect waves-light " type="button" id="search-more">
+			More <span class="triangle_down"></span>
+		</button>
+		<button class="btn btn-secondary " id="search">Search</button>
+	</div>
+</div>
+
+<div class="search-body">
+	<div class="popup-list-open"  >
+		<div class="popup-list-wrapper">
+			<form action="#" method="post" class="j-forms" id="criteria-form">
+				<div class="content">
+					<div class="row">
+						<div class="col-md-6 float-left border-right criteria-group-left">
+							<input type="hidden" name="option_left_select" id="group-header-left" value="1">
+							<input type="hidden" name="option_right_select" id="group-header-right" value="1">
+							<div class="row">
+								<div class="col-md-6 float-left">
+									<label> <input type="radio" name="option_left" checked value="1" class="group-left">&nbsp; Location
+									</label>
+								</div>
+								<div class="col-md-6 float-left ">
+									<label> <input type="radio" name="option_left" value="2" class="group-left">&nbsp; Group
+									</label>
+								</div>
+							</div>
+							<hr>
+							{% block location %}
+								{% include 'filter/location.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+							{% block group %}
+								{% include 'filter/group.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+						</div>
+						<div class="col-md-6 float-left criteria-group-right">
+							<div class="row">
+								<div class="col-md-6 float-left">
+									<label> <input type="radio" name="option_right" checked  value="1" class="group-right">&nbsp; Date
+									</label>
+								</div>
+								<!--<div class="col-md-6 float-left" id="criteria-option-event">
+									<label> <input type="radio" name="option_right" value="2" class="group-right">&nbsp; Event
+									</label>
+								</div>-->
+							</div>
+							<hr>
+							{% block date %}
+								{% include 'filter/date.twig' with { 'base_url': base_url} %}
+							{% endblock %}
+							{% block event %}
+								{% include 'filter/event.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

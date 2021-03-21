@@ -1,0 +1,247 @@
+{% extends "layout/index.html" %}
+
+{% block head %}
+{{ parent() }}
+
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/pages/j-pro/css/j-forms.css">
+ <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/feather/css/feather.css">
+ <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons.min.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons-wind.min.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/p-loader.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/bower_components/select2/css/select2.min.css">
+
+<style type="text/css">
+#branch_select_div{
+	float: right;
+}
+
+.header-row{
+	padding-top: 36px;
+}
+.card-rate-table {
+    padding: 10px 20px 0 20px;
+}
+.card-rate-table table tbody tr td {
+    text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+			<div class="page-wrapper">
+				<div class="page-header">
+					<div class="row align-items-end">
+						<div class="col-lg-4">
+							<div class="page-header-breadcrumb">
+								{{ breadcrumb|raw }}
+							</div>
+						</div>
+						<div class="col-lg-8 text-right">
+							<div class="page-header-title">
+								<div class="d-inline">
+									<h4>
+										 {{ page_title }}
+									</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-body">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-rate-table">
+                                <div class="card-block">
+
+                                    <div class="form-group row" style="justify-content: center;">
+
+                                        <label class="col-form-label">Branch : </label>
+                                        <div class="col-5">
+                                            <select class="form-control" id="selbranch" name="selbranch">
+                                                {% for branch in branchs %}
+                                                    <option value="{{ branch.branch_id }}">{{ branch.branch_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <label class="col-form-label">Year : </label>
+                                        <div class="col">
+                                            <select class="form-control" id="selyear" name="selyear">
+                                                {% set this_year = "now"|date("Y") %}
+                                                {% for year in range( this_year , 2016) %}
+                                                    <option value="{{ year }}">{{ year }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <label class="col-form-label">Month : </label>
+                                        <div class="col">                                        
+                                            <select class="form-control" id="selmonth" name="selmonth">
+                                                <option value="">-- Select Month --</option>
+                                                {% for month in range(1, 12)%}
+                                                    <option value="{{ month }}">{{ date('2021-' ~month ~ '-01') |date('F') }}</option>
+                                                {% endfor %}                                                
+                                            </select>
+                                        </div>
+
+                                        {# <label class="col-form-label">Date : </label>
+                                        <div class="col">
+                                            <select class="form-control" id="seldate" name="seldate">
+                                                {% for date in 1..31 %}
+                                                    <option value="{{ date }}">{{ date }}</option>
+                                                {% endfor %}      
+                                            </select>
+                                        </div>                                         #}
+
+                                    </div>   
+                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card card-rate-table" style="padding-bottom:10px;">
+                                <div class="card-header">
+                                <h5>Conversion Rate</h5>
+                                    <span>use class <code>table</code> inside table element</span>
+                                </div>
+                                <div class="card-block table-border-style">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Receipt Count</th>
+                                                    <th>Sales Amount</th>                                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in 1..31 %}
+                                                <tr>
+                                                    <th scope="row">{{ i }}</th>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                {% endfor %}                                                                                                
+                                            </tbody>                                           
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="card card-rate-table" style="padding-bottom:10px;">
+                                <div class="card-header">
+                                    <div style="float:right;">
+                                        <button class="btn btn-success btn-sm" style="width:110px;"><i class="fa fa-save"></i> Save</button>
+                                        <button class="btn btn-info btn-sm" style="width:110px;"><i class="fa fa-upload"></i> Upload File</button>
+                                    </div>
+                                    <h5>Configuration</h5>
+                                    <span>use class <code>table</code> inside table element</span>                                    
+                                </div>
+
+
+                                <div class="card-block table-border-style" style="padding-bottom: 5px;">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align:left;">Hour</th>
+                                                    <th style="text-align:left;">Receipt Count</th>
+                                                    <th style="text-align:left;">Sales Amount</th>                                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                                                                             
+                                            </tbody>                                           
+                                        </table>
+                                    </div>
+                                </div>                                
+
+                                {% for i in 0..23 %}
+                                <div class="form-group row" style="margin-bottom: 0.4rem;padding: 0 20px;">          
+                                              
+                                    <label class="col-2 col-form-label" style="font-size:12px;">{{ "%02d"|format(i) }}:00</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" style="font-size:12px;" value="0">                                        
+                                    </div>
+                                    
+                                     <div class="col">                                    
+                                        <input type="text" class="form-control form-control-sm" style="font-size:12px;" value="0">
+                                    </div>
+                                        
+                                </div>
+                                {% endfor %}           
+
+                            </div>
+                        </div>
+                    </div>
+    				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/highcharts.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/series-label.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/exporting.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/export-data.js"></script>
+<script src="{{ base_url }}/theme/bower_components/highcharts-8.2.0/code/modules/accessibility.js"></script>
+<!-- datatable -->
+<script src="{{ base_url }}/theme/bower_components/datatables.net/js/jquery.dataTables.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.print.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.html5.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" ></script>
+<script src="{{ base_url }}/theme/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" ></script>
+
+ <script src="{{ base_url }}/theme/assets/pages/advance-elements/moment-with-locales.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ base_url }}/theme/assets/pages/advance-elements/bootstrap-datetimepicker.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/bootstrap-daterangepicker/js/daterangepicker.js"></script>
+
+<script type="text/javascript" src="{{ base_url }}/theme/assets/js/SmoothScroll.js"></script>
+<script src="{{ base_url }}/theme/assets/js/pcoded.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js"></script>
+<script type="text/javascript" src="{{ base_url }}/theme/bower_components/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="{{ base_url }}/theme/assets/js/script.js"></script>
+
+<script type="text/javascript" src="{{ base_url }}/theme/assets/pages/j-pro/js/custom/popup-menu-form.js"></script>
+<script type="text/javascript" src="{{ base_url }}/theme/assets/js/common-pages.js"></script>
+
+
+<!-- custom js -->
+<script src="{{ base_url }}/theme/assets/js/service.js"></script>
+<script src="{{ base_url }}/theme/assets/js/criteria.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_location.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_group.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_date.js"></script>
+<script src="{{ base_url }}/theme/assets/js/filter_event.js"></script>
+<script src="{{ base_url }}/theme/assets/js/conversion_rate.js"></script>
+
+<script>
+
+    $("#selbranch").change(function(){
+        fetchTableConversionRate();
+    });
+
+    function fetchTableConversionRate(){
+
+    }
+
+</script>
+{% endblock %}

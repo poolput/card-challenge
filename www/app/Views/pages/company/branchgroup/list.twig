@@ -1,0 +1,127 @@
+{% extends "layout/index.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block content %}
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+
+		<div class="main-body">
+			<div class="page-wrapper">
+
+				<div class="page-header">
+					<div class="row align-items-end">
+						<div class="col-lg-4">
+							<div class="page-header-breadcrumb">
+								{{ breadcrumb|raw }}
+							</div>
+						</div>
+						<div class="col-lg-8 text-right">
+							<div class="page-header-title">
+								<div class="d-inline">
+									<h4>
+										{{ title_body }}
+									</h4>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-header">
+									<h5>Custom Button</h5>
+									<span>Fundamentally, each button is described by an object - this object is read by Buttons and displayed as appropriate. There are a number of parameters that Buttons will automatically look for in the button description object such as buttons.buttons.text and buttons.buttons.action
+										which are the two fundamental parameters (button text and the action to take when activated).</span>
+								</div>
+								<div class="card-block">
+									<div class="dt-responsive table-responsive">
+										<table id="users-btn" class="table table-striped table-bordered nowrap">
+											<thead>
+												<tr>
+													<th>Id</th>
+													<th>Name</th>
+													<th class="w-25">Date</th>
+													<th class="w10-px"></th>
+												</tr>
+											</thead>
+											<tbody>
+											    {% for branch_group in branch_groups %}
+    												<tr>
+    													<td>{{ branch_group.id }}</td>
+    													<td>{{ branch_group.name }}</td>
+    													<td>{{ branch_group.date }}</td>
+    													<td>
+        													<a class="btn btn-secondary" href="{{ base_url }}/branch-group/edit/{{ branch_group.id }}"><span>Edit</span></a>
+        													<a onclick="return confirm('Are you sure to delete?')" class="btn btn-outline-secondary" href="{{ base_url }}/branch-group/delete/{{ branch_group.id }}"><span>Del</span></a>
+    													</td>
+    												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+	<script src="{{ base_url }}/theme/bower_components/datatables.net/js/jquery.dataTables.min.js" ></script>
+	<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js" ></script>
+	
+	<script src="{{ base_url }}/theme/assets/pages/data-table/js/jszip.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/js/pdfmake.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/js/vfs_fonts.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/dataTables.buttons.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/buttons.flash.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/jszip.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/pdfmake.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/vfs_fonts.js" ></script>
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/buttons.colVis.min.js" ></script>
+	
+	<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.print.min.js" ></script>
+	<script src="{{ base_url }}/theme/bower_components/datatables.net-buttons/js/buttons.html5.min.js" ></script>
+	<script src="{{ base_url }}/theme/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" ></script>
+	<script src="{{ base_url }}/theme/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" ></script>
+	<script src="{{ base_url }}/theme/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" ></script>
+
+	<script  src="{{ base_url }}/theme/bower_components/i18next/js/i18next.min.js"></script>
+	<script  src="{{ base_url }}/theme/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+	<script  src="{{ base_url }}/theme/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+	<script  src="{{ base_url }}/theme/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+
+	<script src="{{ base_url }}/theme/assets/pages/data-table/extensions/buttons/js/extension-btns-custom.js" ></script>
+	<script src="{{ base_url }}/theme/assets/js/pcoded.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js" ></script>
+	<script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js" ></script>
+	<script  src="{{ base_url }}/theme/assets/js/script.js"></script>
+	
+	<script>
+    	$('#users-btn').DataTable({
+    		language: {
+    		    "search": ""
+    		  },
+    		dom : 'Bfrtip',
+    		buttons : [{
+    			text : '+ Add',
+    			className : 'btn btn-secondary',
+    			action : function(e, dt, node, config) {
+    				window.location.href="{{ base_url }}/branch-group/add";
+    			}
+    		}]
+    	});
+    	$('.dt-button').removeClass('dt-button');
+ 
+	</script>
+{% endblock %}

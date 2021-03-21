@@ -1,0 +1,64 @@
+<div class="row seacrh-header" id="criteria">
+	<div id="btn-title-header-block">
+		<div class=" row">
+			<div class="col-md-8 float-left ">
+    			<h5 class="pl-4 page-title">
+    				{{ page_title }}
+    			</h5>
+			</div>
+		</div>
+	</div>
+	<div id="btn-date-header-block">
+    	<div class="input-daterange input-group" id="datepicker">
+    		<input autocomplete="off" type="text" class="input-sm form-control date-start" name="start" value="{{ 'now'|date('Y-m-d') }}"> 
+    		<span class="input-to pt-2">-</span> 
+    		<input autocomplete="off" type="text" class="input-sm form-control date-end" name="end" value="{{ 'now'|date('Y-m-d') }}">
+    	</div>
+    </div>
+	<div id="btn-search-header-block">
+		<button class="popup-list-open btn btn-outline-secondary  waves-effect waves-light " type="button" id="search-more">
+			More <span class="triangle_down"></span>
+		</button>
+		<button class="btn btn-secondary " id="search">Search</button>
+	</div>
+</div>
+
+<div class="search-body comparison">
+	<div class="popup-list-open"  >
+		<div class="popup-list-wrapper">
+			<form action="#" method="post" class="j-forms" id="criteria-form">
+				<div class="content">
+					<div class="row">
+						<div class="col-md-6 float-left border-right criteria-group-left">
+							<div class="row">
+								<div class="col-md-6 float-left">
+									<label> <input type="radio" name="option_left" checked value="1" class="group-left">&nbsp; Location
+									</label>
+								</div>
+								<div class="col-md-6 float-left ">
+									<label> <input type="radio" name="option_left" value="2" class="group-left">&nbsp; Group
+									</label>
+								</div>
+							</div>
+							<hr>
+							{% block location %}
+								{% include 'fillter/location.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+							{% block group %}
+								{% include 'fillter/group.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+							 
+						</div>
+						 {% block date %}
+								{% include 'fillter/date_heatmap.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+							{% block event %}
+								{% include 'fillter/event.twig' with { 'base_url': base_url } %}
+							{% endblock %}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

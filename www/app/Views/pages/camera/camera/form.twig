@@ -1,0 +1,226 @@
+{% extends "layout/index.html" %}
+{% block head %}
+{{ parent() }}
+<style>
+    .square {
+        border-radius:0 !important;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+			<div class="page-wrapper">
+				<div class="page-header">
+					<div class="row align-items-end">
+						<div class="col-lg-4">
+							<div class="page-header-breadcrumb">
+								{{ breadcrumb|raw }}
+							</div>
+						</div>
+						<div class="col-lg-8 text-right">
+							<div class="page-header-title">
+								<div class="d-inline">
+									<h4>
+										{{ title_body }}
+									</h4>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-body">
+					<div class="row">
+
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-block">
+								
+                                    {% if warning_exist is not empty %}
+                                        <div class="alert alert-warning background-warning">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <i class="icofont icofont-close-line-circled text-white"></i>
+                                            </button>
+                                            <strong> {{ warning_exist }}  </strong>
+                                            <code></code>
+                                        </div>
+                                    {% endif %}
+                                    
+									<h4 class="sub-title">Camera Setting</h4>
+									<form action="" method="post" autocomplete="on" id="frmmain" name="frmmain">
+									   <br>
+										<input type="hidden" name="camera_id" id="camera_id"	value="{{ camera.camera_id }}">
+										<div class="form-group row">
+										  <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Camera Name<span class="text-danger error"> *</span></label>
+											<div class="col-sm-8">
+												<input type="text" class="form-control square" name="camera_name" id="camera_name" value="{{ camera.camera_name }}" placeholder="" >			
+												 <span class="messages"><p class="text-danger error">
+                                                        {{ incurrect_message }}
+                                                    </p></span>								 
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										<div class="form-group row">
+										   <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Camera IP</label>
+											<div class="col-sm-8">
+												<input type="text" class="form-control square" name="camera_ip" id="camera_ip" value="{{ camera.camera_ip }}"placeholder="" >											 
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										<div class="form-group row">
+										   <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Camera Type<span
+												class="text-danger error"> *</span></label>
+											<div class="col-sm-8">								
+											 <select class="form-control square" name="camera_type" id="camera_type" >
+											     <option value=''>-- Select Camera Type --</option>
+											     <option value='visitor_entrance'  {%  if camera.camera_type == "visitor_entrance" %} selected="selected"  {% endif %} >Visitor Entrance</option>
+											     <option value='visitor_passing'   {%  if camera.camera_type == "visitor_passing" %} selected="selected"  {% endif %} >Visitor Passing</option>
+											 </select>
+											  <span class="messages"><p class="text-danger error">
+                                                        {{ incurrect_select_message }}
+                                                    </p></span>
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										<div class="form-group row">
+										 <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Camera Entrance<span class="text-danger error"> *</span></label>
+											<div class="col-sm-8">
+						 						 <select class="form-control square" name="camera_entrance" id="camera_entrance"  >
+                                                     <option value=''>-- Select Camera Entrance --</option>
+                                                     <option value='accept'  {%  if camera.camera_entrance == "accept" %} selected="selected"  {% endif %}>Accept</option>
+                                                     <option value='none' {%  if camera.camera_entrance == "none" %} selected="selected"  {% endif %}>None</option>
+                                                 </select>			 
+                                                  <span class="messages"><p class="text-danger error">
+                                                        {{ incurrect_select_message }}
+                                                    </p></span>
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										
+										<div class="form-group row">
+										   <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Camera Serial</label>
+											<div class="col-sm-8">
+												<input type="text" class="form-control square" name="camera_serial" id="camera_serial" value="{{ camera.camera_serial }}" placeholder="">												 
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										<div class="form-group row">
+										 <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Floor</label>
+											<div class="col-sm-8">
+											     <input type="text" class="form-control square" name="floor" id="floor" value="{{ camera.floor }}" placeholder="">
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										<div class="form-group row">
+										 <div class="col-sm-1"></div>
+											<label class="col-sm-2 col-form-label">Branch<span class="text-danger error"> *</span></label>
+											<div class="col-sm-8">
+												 <select class="form-control square" name="branch_id" id="branch_id" >
+												    <option value=''>-- Select Branch Name --</option>
+												     {% for branch in branchs %}
+    												     {% set selected = '' %}
+                                                            {%  if branch.branch_id == camera.branch_id %}
+                                                                {% set selected = ' selected="selected" ' %}
+                                                            {%  endif %}
+												        <option {{ selected }} value='{{ branch.branch_id }}'>{{ branch.branch_name }}</option>
+												     {% endfor %}
+												 </select>
+												  <span class="messages"><p class="text-danger error">
+                                                        {{ incurrect_select_message }}
+                                                    </p></span>
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										<br>
+									   <hr>
+										<div class="form-group row">
+										 <div class="col-sm-1"></div>
+										   <div class="col-md-10 text-right">
+												<button class="btn btn-outline-secondary btn-cancel">Cancel</button>
+												<button class="btn btn-secondary btn-save">&nbsp; Save &nbsp;</button>
+											</div>
+											 <div class="col-sm-1"></div>
+										</div>
+										
+									</form>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+<script src="{{ base_url }}/theme/bower_components/i18next/js/i18next.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/select2/js/select2.full.min.js"></script>
+
+<script src="{{ base_url }}/theme/assets/js/pcoded.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/script.js"></script>
+ 
+<script>
+
+	function validate(){
+ 
+        $('.messages').hide();        
+        var camera_name = $('#camera_name').val();
+        var branch_id = $('#branch_id').val();       
+        var camera_entrance = $('#camera_entrance').val();        
+        var camera_type = $('#camera_type').val();
+        var valid = 0;
+        
+        if(!camera_name){
+            $('#camera_name').parent('div').find('.messages').show();
+            valid = 1;
+        }
+        if(!branch_id){
+            $('#branch_id').parent('div').find('.messages').show();
+            valid = 1;
+        }
+        if(!camera_entrance){
+            $('#camera_entrance').parent('div').find('.messages').show();
+            valid = 1;
+        }
+        if(!camera_type){
+            $('#camera_type').parent('div').find('.messages').show();
+            valid = 1;
+        }
+
+        if (valid != 1) {
+            return true;
+        } else {
+            return false;
+        }
+           
+	}
+	
+    $('.btn-cancel').click(function() {
+		window.history.back();
+		return false;
+	});
+	
+	$('.btn-save').click(function() {		
+		return validate();
+	}); 
+	
+</script>
+{% endblock %}

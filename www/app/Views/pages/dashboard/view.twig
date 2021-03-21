@@ -1,0 +1,116 @@
+{% extends "layout/index.html" %}
+{% block head %}
+{{ parent() }}
+
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/pages/j-pro/css/j-forms.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/feather/css/feather.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons.min.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons-wind.min.css">
+<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/p-loader.css">
+
+{% endblock %}
+{% block content %}
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<!-- Main-body start -->
+		<div class="main-body">
+			<div class="page-wrapper">
+				<div class="page-body">
+					<!-- row start -->
+					<div class="row mb-5">
+						<div class="col-xl-9 col-md-12 h6 mb-5">
+							<span class="pr-1">Click:</span> <span class="font-weight-bold">10</span>
+							<span class="pr-1 pl-3">My Best:</span><span class="font-weight-bold">15</span>
+							<span class="pr-1 pl-3">Global Best:</span><span class="font-weight-bold">12</span>
+						</div>
+						<div class="col-xl-3 col-md-12 text-right">
+							<button class="btn btn-primary btn-block p-t-15 p-b-15">New Game</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-3 col-md-6">
+							<div class="card">
+								<div class="card-block">
+									<div class="row align-items-center m-l-0">
+										<div class="col-auto">
+											<i class="icofont icofont-chart-flow-alt-2 f-30 text-c-pink"></i>
+										</div>
+										<div class="col-auto">
+											<h6 class="text-muted m-b-10">Branchs</h6>
+											<h2 class="m-b-0">
+												{{ total_branchs }}
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card">
+								<div class="card-block">
+									<div class="row align-items-center m-l-0">
+										<div class="col-auto">
+											<i class="icofont icofont-people f-30 text-c-green"></i>
+										</div>
+										<div class="col-auto">
+											<h6 class="text-muted m-b-10">Staffs</h6>
+											<h2 class="m-b-0">
+												{{ total_staffs }}
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card">
+								<div class="card-block">
+									<div class="row align-items-center m-l-0">
+										<div class="col-auto">
+											<i class="icofont icofont-ui-user-group f-30 text-c-blue"></i>
+										</div>
+										<div class="col-auto">
+											<h6 class="text-muted m-b-10">Users</h6>
+											<h2 class="m-b-0">
+												{{ total_users }}
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card">
+								<div class="card-block">
+									<div class="row align-items-center m-l-0">
+										<div class="col-auto">
+											<i class="ti-video-camera f-30 text-c-lite-green"></i>
+										</div>
+										<div class="col-auto">
+											<h6 class="text-muted m-b-10">Cameras</h6>
+											<h2 class="m-b-0">
+												{{ total_cameras }}
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+ 
+<script src="{{ base_url }}/theme/assets/js/service.js"></script>
+<script src="{{ base_url }}/theme/assets/js/criteria.js"></script>
+<script src="{{ base_url }}/theme/assets/js/dashboard.js"></script>
+
+{% endblock %}

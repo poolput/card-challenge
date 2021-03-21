@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block header %} 
+{% include 'layout/header.html' with { 'base_url': base_url } %} 
+{% endblock %}
+
+<body class="">
+	<input type="hidden" id="base_url" value="{{ base_url }}">
+	 
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+				{% block head %} 
+					<!-- {% include 'layout/menu.html' %}  -->
+				{% endblock %} 
+				{% block content %} 
+				
+				{% endblock %}
+		</div>
+	</div>
+
+	{% block footer %} 
+		{% include 'layout/footer.html' with { 'base_url': base_url } %} 
+	{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+{% extends "layout/index.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block content %}
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+			<div class="page-wrapper">
+				<div class="page-header">
+					<div class="row align-items-end">
+						<div class="col-lg-4">
+							<div class="page-header-breadcrumb">
+								{{ breadcrumb|raw }}
+							</div>
+						</div>
+						<div class="col-lg-8 text-right">
+							<div class="page-header-title">
+								<div class="d-inline">
+									<h4>
+										{{ title_body }}
+									</h4>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-body permission">
+					<div class="row">
+
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-block">
+									{% if warning_exist is not empty %}
+									<div class="alert alert-warning background-warning">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<i class="icofont icofont-close-line-circled text-white"></i>
+										</button>
+										<strong> </strong>
+										{{ warning_exist }}
+										<code>
+											{{ post.email }}
+										</code>
+									</div>
+									{% endif %}
+									<h4 class="sub-title">Role Setting</h4>
+									<form action="" method="post" autocomplete="on" id="form_role">
+										<input type="hidden" name="role_id" id="role_id" value="{{ role.role_id }}">
+
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Role Name <span class="text-danger error">*</span></label>
+											<div class="col-sm-10">
+												<p>{{ role.role_name|capitalize }}</p>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Description </label>
+											<div class="col-sm-10">
+												{{ role.description }}
+											</div>
+										</div>
+
+										<div class="row   pt-2 ">
+										 
+											<div class="col-md-12 pt-2">
+												<ul class="nav nav-tabs md-tabs" role="tablist">
+    												{% for key,page in pages_all %}
+    													{% set isactive = '' %}
+    													{% if key == 1 %}
+    													    {% set isactive = ' active' %}
+    													{% endif %}
+    													<li class="nav-item">
+    														<input type="checkbox" {{ checked }} name="page[]" value="{{ page.id }}" class="hide" checked="checked">
+    														<a class="nav-link  {{ isactive }}" data-id="tab-{{ page.id }}" data-toggle="tab" href="#tab-{{ page.id }}" role="tab" aria-expanded="true">{{ page.name|capitalize }}</a>
+    														<div class="slide"></div>
+    													</li>
+    												{% endfor %}
+												</ul>
+												<div class="tab-content card-block">
+    												{% for key,page in pages_all %}
+    												    {% set isactive = '' %}
+    													{% if key == 1 %}
+    													    {% set isactive = ' active' %}
+    													{% endif %}
+														<div class=" tab-pane {{ isactive }}" id="tab-{{ page.id }}" role="tabpanel" aria-expanded="true">
+															{% if page.sub is not empty %}
+																<div class="page-item">
+        															<p class="  pt-2 pb-2">
+                    													Accession Branch ( <span class="page-select">0</span> /&nbsp;<span class="page-all">0</span>) 
+                    													<span class="check pointer">Check All</span> / <span class="uncheck pointer">Uncheck All</span>
+                    												</p>
+    															    {% for sub_page in page.sub %}
+                														<div class="row pb-3">
+                															<div class="col-md-12 page-group">
+                																<p>
+                																	<input class="page-group-main" type="checkbox" {{ checked }} name="page[]" value="{{ sub_page.id }}">&nbsp;
+                        															{{ sub_page.alias|capitalize }}
+                        														</p>
+                																{% for sub_sub_page in sub_page.sub %}
+                    																<div class="col-md-3 float-left  pb-2 pl-5">
+                    																	<input class="page-group-sub" type="checkbox" {{ checked }} name="page[]" value="{{ sub_sub_page.id }}">&nbsp;
+                    																	{{ sub_sub_page.alias|capitalize }}
+                    																</div>
+                																{% endfor %}
+                															</div>
+                														</div>
+            														{% endfor %}
+        														</div>
+        													{% else %}
+        														<p class="font-weight-blod">
+        														What is&nbsp;{{ page.alias|lower }}?
+        														</p>
+        														<p class="m-0">
+                                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                                                                    It has survived not only five centuries, but also the leap into electronic typesetting, 
+                                                                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
+                                                                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+                                                                    like Aldus PageMaker including versions of Lorem Ipsum.
+																</p>
+    														{% endif %}
+														</div>
+    												{% endfor %}
+												</div>
+											</div>
+										</div>
+
+										<div class="row pt-3 pb-3">
+											<div class="col-md-12 text-right">
+												<button type="button" class="btn btn-outline-secondary btn-cancel">Cancel</button>
+												<button class="btn btn-secondary btn-save">&nbsp; Save &nbsp;</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+<script src="{{ base_url }}/theme/bower_components/i18next/js/i18next.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="{{ base_url }}/theme/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+
+<script src="{{ base_url }}/theme/assets/js/pcoded.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/vartical-layout.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ base_url }}/theme/assets/js/script.js"></script>
+
+<script>
+$(function(){
+	var total = 0;
+	$('.nav-link').click(function(){
+		var id = $(this).data('id');
+        total = 0;
+        $('#'+id).find('.page-item').find('input').each(function(){
+        	total = total + 1;
+        });
+        $('#'+id).find('.page-item').find('.page-all').html(total);
+	});
+	
+    $('.check').click(function(){
+    	total = 0;
+    	$(this).parents('.page-item').find('input').each(function(){
+	  		$(this).prop('checked', true);
+	  		total = total + 1;
+		});
+		$(this).parents('.page-item').find('.page-select').html(total);
+	});
+	
+  	$('.uncheck').click(function(){
+  		$(this).parents('.page-item').find('input').each(function(){
+      		$(this).prop('checked', false);
+    	});
+      	$(this).parents('.page-item').find('.page-select').html(0);
+  	});
+
+  	$('.page-group-main').click(function(){
+    	total = 0;
+    	var checked = $(this).is(':checked');
+    	if(checked == true){
+    		$(this).parents('.page-group').find('input').each(function(){
+    	  		$(this).prop('checked', true);
+    	  		total = total + 1;
+    		});
+    		$(this).parents('.page-item').find('.page-select').html(total);
+      	}else{
+    		$(this).parents('.page-group').find('input').each(function(){
+    	  		$(this).prop('checked', false);
+    		});
+    		$(this).parents('.page-item').find('.page-select').html(0);
+        }
+  	});
+
+	$('.page-group-sub').click(function(){
+		var all = false;
+		$(this).parents('.page-group').find('.page-group-sub').each(function(){
+			var checked = $(this).is(':checked');
+			if(checked != true){
+				all = true;
+			}
+		});
+		$(this).parents('.page-group').find('.page-group-main').each(function(){
+			if(all==false){
+				$(this).prop('checked', true);
+			}
+		});	
+	});
+
+	$('.permission').find('input').each(function(){
+		var page_item = $(this).val();
+		var page_select = '';
+		{% for page in pages %}
+			page_select = '{{ page.id }}';
+			if(page_item == page_select){
+				$(this).prop('checked', true);
+			}
+		{% endfor %}
+	});	
+  	
+});	
+ 
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+<div class="modal fade" id="add-branch-modal" data-id="" tabindex="-1" role="dialog">
+	<div class=" modal-dialog branch-Modal" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Choose Branch for "<span class="group-name-selected"></span>"</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body camera-group-modal">
+					<div class="row pt-2 item-location">
+								<div class=" input-group criteria-search ml-3 pb-3">
+									<input type="text" name="option_search_location" id="criteria_search_location" value="" placeholder="Location Name" class="input-sm form-control">
+								</div>
+								<div class="row item-all">
+									<div class="col-md-12 float-left pb-1  ">
+										<input checked type="checkbox" name="option_location_all" id="option_location_branch" value="1" > &nbsp;All Branch
+									</div>
+								</div>
+								<ul>
+    								{% for province in branchs %}
+    									<li class="row item-province item-province-{{ province.id }} "  >
+    										<input checked type="checkbox" name="option_province[]" data-parent="" id="province-{{ province.id }}" value="{{ province.id }}" class="province"> &nbsp; {{ province.name|capitalize }}
+    										<div class="col-sm-1 text-right collapse-icon">
+        										<a data-toggle="collapse" 
+            										data-target="#parent-{{ province.id }}" 
+            										aria-expanded="true"><p class="collapse-icon-plus">+</p><p class="collapse-icon-minus">-</p></a>
+        									</div>
+    										<ul class="collapse show"
+    										 data-id="{{ province.id }}" 
+        									 data-value="{{ province.name }}" 
+        									 id="parent-{{ province.id }}">
+    					                        {% for branch in province.branch %}
+        											<li class="row item-branch item-branch-{{ branch.id }} " data-id="{{ branch.id }}" data-value="{{ branch.name }}" id="parent-{{ branch.id }}" data-parent="parent-{{ province.id }}">
+    													<input checked type="checkbox" id="branch-{{ branch.id }}" data-parent="{{ province.id }}" value="{{ branch.id }}" data-value="{{ branch.name }}" data-province-id="province-{{ province.id }}" name="option_branch[]" value="{{ branch.id }}" class="branch province-{{ province.id }}"> &nbsp; {{ branch.name|capitalize }}
+            											<div class="col-sm-1 text-right collapse-icon">
+                    										<a data-toggle="collapse" 
+                        										data-target="#collapse-{{ branch.id }}" 
+                        										aria-expanded="true">
+                        										<p class="collapse-icon-plus">+</p>
+                        										<p class="collapse-icon-minus">-</p>
+                        									</a>
+                    									</div>
+            											<ul
+            											class="collapse show" 
+                        								id="collapse-{{ branch.id }}">
+                											{% for group in branch.group %}
+                    											{% if group.id is not empty %}
+                    												<li class="row location-item-group item-group-{{ group.id }} item-child-2" data-id="{{ group.id }}" data-value="{{ group.name }}" data-parent="parent-{{ branch.id }}">
+                    													<input checked type="checkbox" name="option_camera_group[]" data-parent="{{ branch.id }}" data-value="{{ group.name }}" value="{{ group.id }}" data-branch-id="branch-{{ branch.id }}" class="camera branch-{{ branch.id }}"> &nbsp; {{ group.name|capitalize }}
+                    												</li>
+                    											{% endif %}
+                											{% endfor %}
+            											</ul>
+        											</li>
+    										    {% endfor %}
+    										</ul>
+    									</li>
+    								{% endfor %}
+								</ul>
+							</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary  " data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary save-branch ">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
