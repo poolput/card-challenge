@@ -1,0 +1,198 @@
+@media ( max-width :1650px) {
+	#btn-title-header-block {
+		width: 40%;
+	}
+	#btn-date-header-block {
+		width: 42%;
+	}
+	#btn-search-header-block {
+		width: 18%;
+		text-align: right;
+		top: -8px;
+		right: 30px;
+	}
+	.criteria-date {
+	    width: 414px !important;
+	}
+}
+@media ( max-width :1638px) {
+ 
+	.criteria-date {
+	    width: 221px !important;
+	}
+}
+@media ( max-width : 1515px) {
+	.criteria-group-left {
+		flex: 0 0 40%;
+		max-width: 40%;
+	}
+	.criteria-group-right {
+		flex: 0 0 60%;
+		max-width: 60%;
+	}
+	.comparison .criteria-group-left {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.comparison .criteria-group-right {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	#option_month_start, #option_quarter_start, #option_week_start,
+		#option_month_end, #option_quarter_end, #option_week_end {
+		max-width: 68% !important;
+	}
+	.comparison #option_month_start,
+	.comparison #option_quarter_start,
+	.comparison #option_week_start,
+	.comparison #option_month_end, 
+	.comparison #option_quarter_end, 
+	.comparison #option_week_end
+	 {
+		max-width: 75% !important;
+	}
+	.criteria-date {
+	    width: 263px !important;
+	}
+}
+@media ( max-width : 1490px) {
+	.criteria-date {
+	    width: 400px !important;
+	}
+}
+@media ( max-width : 1480px) {
+	#option_month_start, #option_quarter_start, #option_week_start,
+		#option_month_end, #option_quarter_end, #option_week_end {
+		max-width: 67% !important;
+	}
+	.criteria-date {
+	    width: 399px !important;
+	}
+}
+
+@media ( max-width : 1450px) {
+	#btn-title-header-block {
+		width: 40%;
+	}
+	#btn-date-header-block {
+		width: 40%;
+	}
+	#btn-search-header-block {
+		width: 20%;
+		text-align: right;
+		top: -8px;
+		right: 30px;
+	}
+	#option_month_start, #option_quarter_start, #option_week_start,
+		#option_month_end, #option_quarter_end, #option_week_end {
+		max-width: 66.5% !important;
+	}
+	.criteria-date {
+	    width: 397px !important;
+	}
+}
+
+@media ( max-width : 1420px) {
+	#option_month_start, #option_quarter_start, #option_week_start,
+		#option_month_end, #option_quarter_end, #option_week_end {
+		max-width: 66% !important;
+	}
+	.criteria-date {
+	    width: 395px !important;
+	}
+}
+
+@media ( max-width : 1380px) {
+	#option_month_start, #option_quarter_start, #option_week_start,
+		#option_month_end, #option_quarter_end, #option_week_end {
+		max-width: 64% !important;
+	}
+	.criteria-date {
+	    width: 390px !important;
+	}
+}
+
+@media ( max-width : 1320px) {
+	.criteria-date-radio {
+		flex: 0 0 20%;
+		max-width: 20%;
+	}
+	.criteria-date-radio-label {
+		flex: 0 0 80%;
+		max-width: 80%;
+	}
+	#btn-title-header-block {
+		width: 35%;
+	}
+	#btn-date-header-block {
+		width: 40%;
+	}
+	#btn-search-header-block {
+		width: 25%;
+		text-align: right;
+		top: -8px;
+		right: 30px;
+	}
+	.criteria-group-left {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.criteria-group-right {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.block-fillter-start {
+		max-width: 100%;
+	}
+	.block-fillter-end {
+		max-width: 100%;
+		margin-top: 5px;
+	}
+	.block-fillter-dash { 
+	    left: 10px;
+	}
+}
+
+@media ( max-width : 1180px) {
+	.criteria-date-radio {
+		flex: 0 0 30%;
+		max-width: 30%;
+	}
+	.criteria-date-radio-label {
+		flex: 0 0 70%;
+		max-width: 70%;
+	}
+}
+
+@media ( max-width : 1130px) {
+	#btn-title-header-block {
+		width: 35%;
+	}
+	#btn-date-header-block {
+		width: 30%;
+	}
+	#btn-search-header-block {
+		width: 35%;
+		text-align: right;
+		top: -8px;
+		right: 30px;
+	}
+}
+
+@media ( max-width : 1080px) {
+	#btn-title-header-block {
+		width: 34%;
+	}
+	#btn-title-header-block h5 {
+		font-size: 16px;
+	}
+	#btn-date-header-block {
+		width: 33%;
+	}
+	#btn-search-header-block {
+		width: 33%;
+		text-align: right;
+		top: -8px;
+		right: 30px;
+	}
+}
