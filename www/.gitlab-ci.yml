@@ -1,0 +1,11 @@
+image: docker:dev
+
+stages:
+  - Testing
+
+Testing:
+  stage: Testing
+  script:
+      - lftp -e "open ftp://dev.intensivewatch.com;set ftp:ssl-allow no; user pc_dev _5cxD777; mirror -X app/Config/Database.php -X app/Config/App.php -X .* -X .*/ -X writable/ -X system/ -X app/cache/ --reverse --verbose --delete /home/gitlab-runner/builds/sMyP3hrj/0/da-team-dev/pc3 /pc-v3; bye"
+  only:
+    - development
