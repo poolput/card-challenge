@@ -16,7 +16,7 @@ class AuthenticationModel extends Model
 
     public function getToken()
     {
-        $dsn = 'mysql:host=172.31.12.192;dbname=' . $this->db->database;
+        $dsn = 'mysql:host=127.0.0.1;port=3306;dbname=' . $this->db->database;
         $username = $this->db->username;
         $password = $this->db->password;
         \OAuth2\Autoloader::register();
