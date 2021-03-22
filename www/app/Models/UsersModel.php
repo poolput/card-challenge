@@ -14,8 +14,6 @@ class UsersModel extends Model
 
     public function getUser($token = 0)
     {
-        print_r($this->db);
-        exit();
         $builder = $this->db->table('users');
         $builder->getWhere([
             'token' => $token
