@@ -15,14 +15,11 @@ class UsersModel extends Model
 
     public function getUser($token = 0)
     {
-        $sql = "    SELECT
-                        *
-                    FROM
-                        user
-                    where
-                        token = '" . $token . "'
-        ";
-        $query = $this->db->query($sql);
+        $builder = $this->db->table('users');
+        $builder->getWhere([
+            'token' => $token
+        ]);
+        $query = $builder->get();
 
         return $query->getRowArray();
     }
