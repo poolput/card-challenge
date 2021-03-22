@@ -10,6 +10,7 @@ class Api extends BaseController
     {
         $this->config = new \Config\App();
         $this->session = \Config\Services::session();
+        $this->users_model = new UsersModel();
     }
 
     public function setNewGame($token)

@@ -9,7 +9,6 @@ class Home extends BaseController
     public function __construct()
     {
         // $security = \Config\Services::security();
-        $this->users_model = new UsersModel();
     }
 
     public function index()
