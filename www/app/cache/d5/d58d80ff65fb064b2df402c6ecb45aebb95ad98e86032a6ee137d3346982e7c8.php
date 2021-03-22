@@ -93,41 +93,14 @@ class __TwigTemplate_f5093788d216662d46210e2037aea50063123b5f926c4ff438252ef421e
         // line 35
         echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
         echo "/theme/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css\"> 
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 36
-        echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/css/style.css\">
+
 <link rel=\"stylesheet\" type=\"text/css\" href=\"";
         // line 37
         echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/css/datepicker/bootstrap-datepicker.min.css\">  
-
-<!-- Ico fonts -->
+        echo "/theme/assets/css/style.css\">
+ 
 <link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 40
-        echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/icon/icofont/css/icofont.css\">
-
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 42
-        echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/css/jquery.mCustomScrollbar.css\">
-
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 44
-        echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/css/custom_velly.css\">
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 45
-        echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/css/custom_chain.css\">
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 46
-        echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
-        echo "/theme/assets/css/custom.css\">
-
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 48
+        // line 39
         echo twig_escape_filter($this->env, (isset($context["base_url"]) ? $context["base_url"] : null), "html", null, true);
         echo "/theme/assets/css/responsive.css\">
 
@@ -141,7 +114,7 @@ class __TwigTemplate_f5093788d216662d46210e2037aea50063123b5f926c4ff438252ef421e
 
     public function getDebugInfo()
     {
-        return array (  131 => 48,  126 => 46,  122 => 45,  118 => 44,  113 => 42,  108 => 40,  102 => 37,  98 => 36,  94 => 35,  90 => 34,  86 => 33,  80 => 30,  74 => 27,  70 => 26,  64 => 23,  60 => 22,  52 => 17,  47 => 15,  43 => 14,  29 => 3,  26 => 2,  20 => 1,);
+        return array (  104 => 39,  99 => 37,  94 => 35,  90 => 34,  86 => 33,  80 => 30,  74 => 27,  70 => 26,  64 => 23,  60 => 22,  52 => 17,  47 => 15,  43 => 14,  29 => 3,  26 => 2,  20 => 1,);
     }
 }
 /* {% block header %}*/
@@ -179,18 +152,9 @@ class __TwigTemplate_f5093788d216662d46210e2037aea50063123b5f926c4ff438252ef421e
 /* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">*/
 /* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/pages/data-table/css/buttons.dataTables.min.css">*/
 /* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"> */
+/* */
 /* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/style.css">*/
-/* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/datepicker/bootstrap-datepicker.min.css">  */
-/* */
-/* <!-- Ico fonts -->*/
-/* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/icofont/css/icofont.css">*/
-/* */
-/* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/jquery.mCustomScrollbar.css">*/
-/* */
-/* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/custom_velly.css">*/
-/* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/custom_chain.css">*/
-/* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/custom.css">*/
-/* */
+/*  */
 /* <link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/responsive.css">*/
 /* */
 /* </head>*/
