@@ -16,7 +16,7 @@ class AuthenticationModel extends Model
 
     public function getToken()
     {
-        $dsn = 'mysql:host=127.0.0.1;port=8080;dbname=' . $this->db->database;
+        $dsn = 'mysql:host=127.0.0.1;dbname=' . $this->db->database;
         $username = $this->db->username;
         $password = $this->db->password;
         \OAuth2\Autoloader::register();
@@ -25,7 +25,8 @@ class AuthenticationModel extends Model
         $storage = new \OAuth2\Storage\Pdo(array(
             'dsn' => $dsn,
             'username' => $username,
-            'password' => $password
+            'password' => $password,
+            'port' => '8080'
         ));
 
         // Pass a storage object or array of storage objects to the OAuth2 server class
