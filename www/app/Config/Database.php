@@ -1,5 +1,4 @@
 <?php
-
 namespace Config;
 
 /**
@@ -9,6 +8,7 @@ namespace Config;
  */
 class Database extends \CodeIgniter\Database\Config
 {
+
     /**
      * The directory that holds the Migrations
      * and Seeds directories.
@@ -33,10 +33,10 @@ class Database extends \CodeIgniter\Database\Config
     public $default = [
         'DSN' => '',
         'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => 'tiger',
-		'database' => 'card',
-        'DBDriver' => 'MySQLi',
+        'username' => 'root',
+        'password' => 'tiger',
+        'database' => 'card',
+        'DBDriver' => 'MySQL',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug' => (ENVIRONMENT !== 'production'),
@@ -51,7 +51,7 @@ class Database extends \CodeIgniter\Database\Config
         'failover' => [],
         'port' => 3306
     ];
-     
+
     // --------------------------------------------------------------------
     public function __construct()
     {
