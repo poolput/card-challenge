@@ -53,7 +53,7 @@ var fnService = {
 	ele_card : document.getElementsByClassName("card-item-number"),
 	token : '{{ token }}',
 	request : new XMLHttpRequest(),
-	setNewGame: function(index) {
+	setNewGame: function() {
 		fnService.request.withCredentials = true;
         fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token, true);
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');

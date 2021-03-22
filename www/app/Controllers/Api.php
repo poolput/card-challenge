@@ -38,7 +38,7 @@ class Api extends BaseController
                 $this->session->set('number', $number);
 
                 // $this->data['user'] = $this->users_model->getUser($this->data['token']);
-                $this->users_model->setUser($this->data['token']);
+                $this->users_model->setUser($token);
                 echo true;
             } else {
                 echo false;
