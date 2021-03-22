@@ -29,13 +29,13 @@ class AuthenticationModel extends Model
         ));
 
         // Pass a storage object or array of storage objects to the OAuth2 server class
-        $server = new \OAuth2\Server($storage);
+        $server = new \OAuth2\Server($this->db);
 
         // Add the "Client Credentials" grant type (it is the simplest of the grant types)
-        $server->addGrantType(new \OAuth2\GrantType\ClientCredentials($storage));
+        $server->addGrantType(new \OAuth2\GrantType\ClientCredentials($this->db));
 
         // Add the "Authorization Code" grant type (this is where the oauth magic happens)
-        $server->addGrantType(new \OAuth2\GrantType\AuthorizationCode($storage));
+        $server->addGrantType(new \OAuth2\GrantType\AuthorizationCode($this->db));
 
         $server->handleTokenRequest(\OAuth2\Request::createFromGlobals())->send();
     }
