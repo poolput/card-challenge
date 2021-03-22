@@ -1,5 +1,4 @@
 <?php
-
 namespace Config;
 
 require_once SYSTEMPATH . 'Config/AutoloadConfig.php';
@@ -75,7 +74,8 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
          * ];
          */
         $classmap = [
-            'Render' => 'Libraries/Twig.php'
+            'Render' => 'Libraries/Twig.php',
+            'OAuth2' => APPPATH . 'ThirdParty/OAuth2/Autoloader.php'
         ];
 
         // --------------------------------------------------------------------
