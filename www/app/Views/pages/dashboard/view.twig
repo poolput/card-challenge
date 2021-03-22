@@ -60,7 +60,7 @@ var fnService = {
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         fnService.request.onreadystatechange = function() {
             if(fnService.request.readyState == 4 && fnService.request.status == 200) {
-                fnService.card[0].style.display = 'block';
+                fnService.card[0].style.display = 'inline';
             }
         }
         fnService.request.send();
