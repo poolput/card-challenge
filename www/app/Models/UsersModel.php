@@ -33,7 +33,9 @@ class UsersModel extends Model
 
         $this->builder->insert($data);
 
-        return true;
+        $insert_id = $this->db->insertID();
+
+        return $insert_id;
     }
 }
 ?>

@@ -55,6 +55,7 @@ if (! empty($role_id)) {
  */
 
 $routes->add('/set-new-game/(:any)', 'Api::setNewGame/$1');
+$routes->add('/get-card-number/(:segment)', 'Api::getCardNumber/$1');
 
 /**
  * --------------------------------------------------------------------

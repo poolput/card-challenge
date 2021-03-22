@@ -37,10 +37,30 @@ class Api extends BaseController
                 );
                 shuffle($number);
                 $this->session->set('number', $number);
-
-                // $this->data['user'] = $this->users_model->getUser($this->data['token']);
-                $this->users_model->setUser($token);
+                $user_id = $this->users_model->setUser($token);
+                $this->session->set('user_id', $user_id);
                 echo true;
+            } else {
+                echo false;
+            }
+        } else {
+            echo false;
+        }
+    }
+
+    public function getCardNumber($token = 0, $key = 0)
+    {
+        if (! empty($token)) {
+
+            $hash = csrf_hash();
+
+            if ($token == $hash) {
+
+                $number = $this->session->get('number');
+                $user_id = $this->session->get('user_id');
+                // $this->data['user'] = $this->users_model->getUser($this->data['token'], $user_id);
+
+                echo $number[$key];
             } else {
                 echo false;
             }
