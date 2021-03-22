@@ -284,9 +284,9 @@ class App extends BaseConfig
      * | CSRFRegenerate = Regenerate token on every submission
      * | CSRFRedirect = Redirect to previous page with error on failure
      */
-    public $CSRFTokenName = 'csrf_test_name';
+    public $CSRFProtection = TRUE;
 
-    public $CSRFHeaderName = 'X-CSRF-TOKEN';
+    public $CSRFTokenName = 'api';
 
     public $CSRFCookieName = 'csrf_cookie_name';
 
@@ -295,6 +295,8 @@ class App extends BaseConfig
     public $CSRFRegenerate = true;
 
     public $CSRFRedirect = true;
+
+    public $CSRFHeaderName = 'X-CSRF-TOKEN';
 
     /*
      * |--------------------------------------------------------------------------

@@ -40,9 +40,9 @@ defined('MONTH') || define('MONTH', 2592000);
 defined('YEAR') || define('YEAR', 31536000);
 defined('DECADE') || define('DECADE', 315360000);
 
-defined('TITLE') || define('TITLE', 'People Counting');
-defined('DESCRIPTION') || define('DESCRIPTION', 'People Counting');
-defined('KEYWORD') || define('KEYWORD', 'People Counting');
+defined('TITLE') || define('TITLE', 'Blupi: Card');
+defined('DESCRIPTION') || define('DESCRIPTION', 'Blupi: Card');
+defined('KEYWORD') || define('KEYWORD', 'Blupi: Card');
 
 defined('INCURRECT_MESSAGE') || define('INCURRECT_MESSAGE', 'Please enter a valid this field.');
 defined('INCURRECT_SELECT_MESSAGE') || define('INCURRECT_SELECT_MESSAGE', 'Please select a valid this field.');
