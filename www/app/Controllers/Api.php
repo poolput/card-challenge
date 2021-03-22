@@ -7,15 +7,36 @@ class Api extends BaseController
     public function __construct()
     {
         $this->config = new \Config\App();
+        $this->session = \Config\Services::session();
     }
 
-    public function getPeriod()
+    public function setNewGame($token)
     {
-        if (! empty($this->request->getPost())) {
-            $post = $this->request->getPost();
-            $result = prepareOption($post);
-            $period = date('d F Y', strtotime($result['date_start'])) . ' - ' . date('d F Y', strtotime($result['date_end']));
-            echo json_encode($period);
+        if (! empty($token)) {
+
+            $hash = csrf_hash();
+
+            if ($token == $hash) {
+
+                $number = array(
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                );
+                shuffle($number);
+                $this->session->set('number', $number);
+
+                echo true;
+            }
         } else {
             echo false;
         }

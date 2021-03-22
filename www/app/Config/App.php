@@ -22,7 +22,8 @@ class App extends BaseConfig
      * | environments.
      * |
      */
-    public $baseURL = 'http://18.140.7.220/';
+    # public $baseURL = 'http://18.140.7.220/';
+    public $baseURL = 'http://localhost/card-challenge/www/';
 
     /*
      * |--------------------------------------------------------------------------

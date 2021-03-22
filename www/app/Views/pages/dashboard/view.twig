@@ -1,13 +1,7 @@
 {% extends "layout/index.html" %}
 {% block head %}
 {{ parent() }}
-
-<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/pages/j-pro/css/j-forms.css">
-<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/feather/css/feather.css">
-<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons.min.css">
-<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/icon/weather-icons/css/weather-icons-wind.min.css">
-<link rel="stylesheet" type="text/css" href="{{ base_url }}/theme/assets/css/p-loader.css">
-{{ csrf_meta|raw }}
+ 
 {% endblock %}
 {% block content %}
 
@@ -25,17 +19,17 @@
 							<span class="pr-1 pl-3">Global Best:</span><span class="font-weight-bold">12</span>
 						</div>
 						<div class="col-xl-3 col-md-12 text-right">
-							<button class="btn btn-primary btn-block p-t-15 p-b-15 btn-new-game" >New Game</button>
+							<button class="btn btn-primary btn-block p-t-15 p-b-15 " onclick="fnService.setNewGame();">New Game</button>
 						</div>
 					</div>
 					<div class="row">
-						{% for i in 1..12 %}
+						{% for i in 0..11 %}
 						<div class="col-xl-3 col-md-6">
 							<div class="card">
 								<div class="card-block">
 									<div class="row m-l-0">
-										<div class="col-auto card-item text-center">
-											 <p class="h2 p-5 item" id="item-{{ i }}"></p>
+										<div class="col-auto card-item text-center" >
+											 <p class="h2 p-5 card-item-number"></p>
 										</div>
 									</div>
 								</div>
@@ -52,14 +46,32 @@
 {% endblock %}
 {% block footer %}
 {{ parent() }}
- 
-<script src="{{ base_url }}/theme/assets/js/service.js"></script> 
 
 <script>
-var element = document.getElementsByClassName("item");
-
-console.log(element);
+var fnService = {
+	ele_btn_newgame : document.getElementsByClassName("btn-new-game"),
+	ele_card : document.getElementsByClassName("card-item-number"),
+	token : '{{ token }}',
+	request : new XMLHttpRequest(),
+	setNewGame: function(index) {
+		fnService.request.withCredentials = true;
+        fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token, true);
+        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        fnService.request.onreadystatechange = function() {
+            if(fnService.request.readyState == 4 && fnService.request.status == 200) {
+                console.log(fnService.request.responseText);
+            }
+        }
+        fnService.request.send();
+        for (var i=0; i<fnService.ele_card.length; i++) {
+            fnService.ele_card[i].innerHTML = 0;
+        }
+	},	
+	init : function(){
+	 	
+ 		fnService.setNewGame();
+	}
+}
 </script>
-
 
 {% endblock %}

@@ -54,7 +54,7 @@ if (! empty($role_id)) {
  * -----------------
  */
 
-$routes->add('/get-token', 'Authentication::getToken');
+$routes->add('/set-new-game/(:any)', 'Api::setNewGame/$1');
 
 /**
  * --------------------------------------------------------------------

@@ -1,20 +1,22 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\UsersModel;
+
 class Home extends BaseController
 {
 
     public function __construct()
     {
         // $security = \Config\Services::security();
+        $this->users_model = new UsersModel();
     }
 
     public function index()
     {
-        $this->data['token'] = csrf_token();
-        $this->data['hash'] = csrf_hash();
-        $this->data['csrf_meta'] = csrf_meta();
-        $this->data['number'] = array(
+        $this->data['token'] = csrf_hash();
+
+        $number = array(
             1,
             2,
             3,
@@ -28,7 +30,12 @@ class Home extends BaseController
             5,
             6
         );
-        shuffle($this->data['number']);
+        shuffle($number);
+        $this->session->set('number', $number);
+
+        $result = $this->users_model->getUser($this->data['token']);
+        print_r();
+        exit();
 
         return \Twig::instance()->display("pages/dashboard/view.twig", $this->data);
     }
