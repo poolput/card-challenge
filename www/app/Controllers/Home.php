@@ -33,9 +33,7 @@ class Home extends BaseController
         shuffle($number);
         $this->session->set('number', $number);
 
-        $result = $this->users_model->getUser($this->data['token']);
-        print_r($result);
-        exit();
+        $this->data['user'] = $this->users_model->getUser($this->data['token']);
 
         return \Twig::instance()->display("pages/dashboard/view.twig", $this->data);
     }
