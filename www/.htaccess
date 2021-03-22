@@ -10,4 +10,4 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
 
 
-SetEnv CI_ENVIRONMENT production
+SetEnv CI_ENVIRONMENT development
