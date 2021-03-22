@@ -11,13 +11,14 @@ class AuthenticationModel extends Model
     {
         $this->db = \Config\Database::connect();
         $this->session = \Config\Services::session();
+        $this->config = new \Config\App();
     }
 
     public function getToken()
     {
-        $dsn = 'mysql:dbname=my_oauth2_db;host=localhost';
-        $username = 'root';
-        $password = '';
+        $dsn = 'mysql:dbname=' . $this->db->database . ';host=' . $this->db->hostname;
+        $username = $this->db->username;
+        $password = $this->db->password;
         \OAuth2\Autoloader::register();
 
         // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
