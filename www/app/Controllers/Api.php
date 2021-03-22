@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\UsersModel;
+
 class Api extends BaseController
 {
 
@@ -35,7 +37,11 @@ class Api extends BaseController
                 shuffle($number);
                 $this->session->set('number', $number);
 
+                // $this->data['user'] = $this->users_model->getUser($this->data['token']);
+                $this->users_model->setUser($this->data['token']);
                 echo true;
+            } else {
+                echo false;
             }
         } else {
             echo false;
