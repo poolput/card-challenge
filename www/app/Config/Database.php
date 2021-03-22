@@ -32,7 +32,7 @@ class Database extends \CodeIgniter\Database\Config
      */
     public $default = [
         'DSN' => '',
-        'hostname' => 'localhost',
+        'hostname' => 'database',
         'username' => 'root',
         'password' => 'tiger',
         'database' => 'card',
