@@ -22,7 +22,7 @@
 							<button class="btn btn-primary btn-block p-t-15 p-b-15 " onclick="fnService.setNewGame();">New Game</button>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row card-body">
 						{% for i in 0..11 %}
 						<div class="col-xl-3 col-md-6">
 							<div class="card">
@@ -49,21 +49,23 @@
 
 <script>
 var fnService = {
+	card : document.getElementsByClassName("card-body"),
 	ele_btn_newgame : document.getElementsByClassName("btn-new-game"),
 	ele_card : document.getElementsByClassName("card-item-number"),
 	token : '{{ token }}',
 	request : new XMLHttpRequest(),
 	setNewGame: function() {
+		fnService.card[0].style.display = 'none';
         fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token, true);
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         fnService.request.onreadystatechange = function() {
             if(fnService.request.readyState == 4 && fnService.request.status == 200) {
-                console.log(fnService.request.responseText);
+                fnService.card[0].style.display = 'block';
             }
         }
         fnService.request.send();
         for (var i=0; i<fnService.ele_card.length; i++) {
-            fnService.ele_card[i].innerHTML = 0;
+            fnService.ele_card[i].innerHTML = '';
         }
 	},	
 	init : function(){
