@@ -28,7 +28,7 @@
 							<div class="card">
 								<div class="card-block">
 									<div class="row m-l-0">
-										<div class="col-auto card-item text-center" >
+										<div class="col-auto card-item text-center" onclick="fnService.setClick({{ i }});">
 											 <p class="h2 p-5 card-item-number"></p>
 										</div>
 									</div>
@@ -49,11 +49,13 @@
 
 <script>
 var fnService = {
+
 	card : document.getElementsByClassName("card-body"),
 	ele_btn_newgame : document.getElementsByClassName("btn-new-game"),
 	ele_card : document.getElementsByClassName("card-item-number"),
 	token : '{{ token }}',
 	request : new XMLHttpRequest(),
+	
 	setNewGame: function() {
 		fnService.card[0].style.display = 'none';
         fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token, true);
@@ -68,8 +70,14 @@ var fnService = {
             fnService.ele_card[i].innerHTML = '';
         }
 	},	
+	setClick: fucntion(index){
+		for (var i=0; i<fnService.ele_card.length; i++) {
+            fnService.ele_card[i].innerHTML = '';
+        }
+        
+        fnService.ele_card[index].innerHTML = '1';
+	},
 	init : function(){
-	 	
  		fnService.setNewGame();
 	}
 }
