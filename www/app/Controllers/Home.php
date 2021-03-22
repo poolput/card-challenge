@@ -34,7 +34,7 @@ class Home extends BaseController
         $this->session->set('number', $number);
 
         $result = $this->users_model->getUser($this->data['token']);
-        print_r();
+        print_r($result);
         exit();
 
         return \Twig::instance()->display("pages/dashboard/view.twig", $this->data);
