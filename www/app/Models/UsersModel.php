@@ -32,9 +32,8 @@ class UsersModel extends Model
         ];
 
         $this->builder->insert($data);
-        $user_id = $this->builder->getInsertID();
 
-        return $user_id;
+        return true;
     }
 }
 ?>
