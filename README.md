@@ -44,18 +44,18 @@ Your LAMP stack is now ready!! You can access it via `http://localhost`.
 
 ## Configuration Codeigniter 4
 
-Set permission project
+### Set permission project
 
-chmod -R 0755 /var/www/html/www/writable
+> chmod -R 0755 /var/www/html/www/writable
 
-chmod -R 0755 /var/www/html/www/app/cache
+> chmod -R 0755 /var/www/html/www/app/cache
 
 
-Set base URL
+### Set base URL
 
-/var/www/html/www/app/App.php
+> /var/www/html/www/app/App.php
 
-Eg. $baseURL = 'http://domain_or_ip/';
+> Eg. $baseURL = 'http://domain_or_ip/';
 
 
 
