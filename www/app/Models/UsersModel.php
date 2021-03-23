@@ -40,7 +40,7 @@ class UsersModel extends Model
 
     public function getMyBest($token = 0)
     {
-        $this->builder->selectMax('score');
+        $this->builder->selectMin('score');
         $this->builder->getWhere([
             'token' => $token
         ]);
