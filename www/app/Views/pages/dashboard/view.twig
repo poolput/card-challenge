@@ -67,9 +67,17 @@ var fnService = {
 	number_display : [],
 	
 	setNewGame: function() {
+	
+		var request = new XMLHttpRequest();
+		
+		var theUrl = "/set-new-game";
+        request.open("POST", theUrl);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.send(JSON.stringify({ "token": fnService.token}));
+
 		fnService.card[0].style.display = 'none';
 		
-		var request = new XMLHttpRequest();
+		
         request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token);
         request.onreadystatechange = function() {
           if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
