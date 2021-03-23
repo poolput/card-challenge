@@ -65,8 +65,8 @@ var fnService = {
 		fnService.card[0].style.display = 'none';
         fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token, true);
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        fnService.request.onreadystatechange = function() {
-            if(fnService.request.readyState == 4 && fnService.request.status == 200) {
+         fnService.request.onreadystatechange = function() {
+          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
                 fnService.card[0].style.display = '';
             }
         }
@@ -88,8 +88,8 @@ var fnService = {
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         
         fnService.request.onreadystatechange = function() {
-          if (this.status >= 200 && this.status < 400) {
-          	var data = JSON.parse(this.response);
+          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
+          	var data = JSON.parse(request.responseText);
             fnService.ele_card[index].innerHTML = data.number;
           }  
         };
@@ -105,8 +105,8 @@ var fnService = {
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         
         fnService.request.onreadystatechange = function() {
-          if (this.status >= 200 && this.status < 400) {
-          	var data = JSON.parse(this.response);
+          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
+          	var data = JSON.parse(request.responseText);
             fnService.ele_my_best[0].innerHTML = data.score;
           }  
         };
@@ -119,8 +119,8 @@ var fnService = {
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         
         fnService.request.onreadystatechange = function() {
-          if (this.status >= 200 && this.status < 400) {
-          	var data = JSON.parse(this.response);
+          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
+          	var data = JSON.parse(request.responseText);
             fnService.ele_global_best[0].innerHTML = data.score;
           }  
         };
