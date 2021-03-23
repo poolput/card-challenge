@@ -14,9 +14,9 @@
 					<!-- row start -->
 					<div class="row mb-5">
 						<div class="col-xl-9 col-md-12 h6 mb-5">
-							<span class="pr-1">Click:</span> <span class="font-weight-bold">10</span>
-							<span class="pr-1 pl-3">My Best:</span><span class="font-weight-bold">15</span>
-							<span class="pr-1 pl-3">Global Best:</span><span class="font-weight-bold">12</span>
+							<span class="pr-1">Click:</span> <span class="font-weight-bold blu-click">10</span>
+							<span class="pr-1 pl-3">My Best:</span><span class="font-weight-bold blu-my-best">15</span>
+							<span class="pr-1 pl-3">Global Best:</span><span class="font-weight-bold blu-global-best">12</span>
 						</div>
 						<div class="col-xl-3 col-md-12 text-right">
 							<button class="btn btn-primary btn-block p-t-15 p-b-15 " onclick="fnService.setNewGame();">New Game</button>
@@ -53,6 +53,9 @@ var fnService = {
 	card : document.getElementsByClassName("card-body"),
 	ele_btn_newgame : document.getElementsByClassName("btn-new-game"),
 	ele_card : document.getElementsByClassName("card-item-number"),
+	ele_click : document.getElementsByClassName("blu-click"),
+	ele_my_best : document.getElementsByClassName("blu-my-best"),
+	ele_global_best : document.getElementsByClassName("blu-global-best"),
 	token : '{{ token }}',
 	request : new XMLHttpRequest(),
 	
@@ -69,6 +72,8 @@ var fnService = {
         for (var i=0; i<fnService.ele_card.length; i++) {
             fnService.ele_card[i].innerHTML = '';
         }
+        
+        fnService.ele_click[0].innerHTML = 0;
 	},	
 	
 	setClick: function(index){
@@ -86,7 +91,8 @@ var fnService = {
           }  
         };
         fnService.request.send();
-        
+        var click = fnService.ele_click[0].innerHTML;
+        fnService.ele_click[0].innerHTML = Number(click)+1;
 	},
 	
 	init : function(){

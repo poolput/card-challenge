@@ -58,7 +58,7 @@ class Api extends BaseController
 
                 $number = $this->session->get('number');
                 $user_id = $this->session->get('user_id');
-                // $this->data['user'] = $this->users_model->getUser($this->data['token'], $user_id);
+                $this->data['user'] = $this->users_model->getUser($this->data['token'], $user_id);
 
                 echo $number[$key];
             } else {
