@@ -124,7 +124,7 @@ var fnService = {
               			var data = JSON.parse(request.responseText);
                 
                         if(fnService.key_before){
-                			if(fnService.key_after){
+                			if(Number(fnService.key_after)){
                 				fnService.key_before = fnService.key_after;
                 				fnService.value_before = fnService.value_after;
                 			} 
