@@ -53,5 +53,20 @@ class UsersModel extends Model
 
         return $query->getRowArray();
     }
+
+    public function getGlobalBest()
+    {
+        $sql = "    SELECT
+                        MIN(score) as score
+                    FROM
+                        users
+                    where
+                        score <> 0
+                    limit 1
+        ";
+        $query = $this->db->query($sql);
+
+        return $query->getRowArray();
+    }
 }
 ?>

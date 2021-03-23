@@ -105,4 +105,28 @@ class Api extends BaseController
             echo json_encode($data);
         }
     }
+
+    public function getGlobalBest($token = 0)
+    {
+        if (! empty($token)) {
+            $hash = csrf_hash();
+
+            if ($token == $hash) {
+                $row = $this->users_model->getGlobalBest();
+
+                $data['score'] = $row['score'];
+                $data['message'] = json_encode($row);
+                $data['status'] = 'success';
+                echo json_encode($data);
+            } else {
+                $data['message'] = '';
+                $data['status'] = 'false';
+                echo json_encode($data);
+            }
+        } else {
+            $data['message'] = '';
+            $data['status'] = 'false';
+            echo json_encode($data);
+        }
+    }
 }

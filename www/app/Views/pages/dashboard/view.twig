@@ -113,9 +113,24 @@ var fnService = {
         fnService.request.send();
 	},
 	
+	getGlobalBest: function(){
+        
+        fnService.request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token, true);
+        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        
+        fnService.request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+          	var data = JSON.parse(this.response);
+            fnService.ele_global_best[0].innerHTML = data.score;
+          }  
+        };
+        fnService.request.send();
+	},
+	
 	init : function(){
  		fnService.setNewGame();
  		fnService.getMyBest();
+ 		fnService.getGlobalBest();
 	}
 }
 
