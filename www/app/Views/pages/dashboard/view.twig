@@ -110,15 +110,12 @@ var fnService = {
         		console.log(fnService.value_before); 
         		console.log(fnService.value_after); 
         		
-        		console.log(fnService.key_display); 
-        		console.log(fnService.number_display); 
-        		
         		for (var i=0; i < 12; i++) {
         			var key = fnService.ele_card[i];
         			
         			var is_has = fnService.number_display.includes(key);
         			if(is_has == false){
-        				fnService.ele_card[i].innerHTML = '';
+        				//fnService.ele_card[i].innerHTML = '';
         			}
                 }
           }  
