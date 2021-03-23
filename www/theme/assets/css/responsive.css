@@ -199,7 +199,7 @@
 @media ( max-width : 600px) {
 	.col-3 {
 		width: 33% !important;
-		height: 75px !important;
+		max-height: 75px !important;
 	}
  
 }
