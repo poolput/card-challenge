@@ -63,7 +63,7 @@ var fnService = {
 	key_before : 0,
 	value_after : 0,
 	value_before : 0,
-	
+	key_display : [],
 	number_display : [],
 	
 	setNewGame: function() {
@@ -102,11 +102,13 @@ var fnService = {
         		}
         		
         		if(fnService.value_before == fnService.value_after){
-        			fnService.number_display.push({fnService.key_after: fnService.value_after});
-        			fnService.number_display.push({fnService.key_before: fnService.value_before});
+        			fnService.number_display.push(fnService.value_before);
+        			fnService.number_display.push(fnService.value_after);
+        			fnService.key_display.push(fnService.key_before);
+        			fnService.key_display.push(fnService.key_after);
         		}
+        		console.log(fnService.key_display); 
         		console.log(fnService.number_display); 
-        		
         		for (var i=0; i < 12; i++) {
         			var key = fnService.ele_card[i];
         			
@@ -115,7 +117,6 @@ var fnService = {
         				fnService.ele_card[i].innerHTML = '';
         			}
                 }
-                
           }  
         };
         request.send();
