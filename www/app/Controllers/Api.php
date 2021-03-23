@@ -88,9 +88,9 @@ class Api extends BaseController
             $hash = csrf_hash();
 
             if ($token == $hash) {
-                $max = $this->users_model->getMyBest($token);
+                $row = $this->users_model->getMyBest($token);
 
-                $data['number'] = $max;
+                $data['score'] = $row['score'];
                 $data['message'] = '';
                 $data['status'] = 'success';
                 echo json_encode($data);
