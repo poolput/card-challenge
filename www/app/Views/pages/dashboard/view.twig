@@ -85,8 +85,23 @@ var fnService = {
 	},	
 	
 	setClick: function(index){
+	
+		var click = fnService.ele_click[0].innerHTML;
+		
 		if(fnService.key_display.length == 12){
+			
 			alert('Game Over');
+		    //save score
+            var request = new XMLHttpRequest();
+            request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ click);
+            request.onreadystatechange = function() {
+                  if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                		fnService.getMyBest();
+						fnService.getGlobalBest();
+                  }
+            };
+            request.send();
+            
 		}else{
         
             var request = new XMLHttpRequest();
@@ -131,21 +146,7 @@ var fnService = {
             };
             request.send();
             
-            var click = fnService.ele_click[0].innerHTML;
             fnService.ele_click[0].innerHTML = Number(click)+1;
-            console.log(fnService.key_display.length);
-            if(fnService.key_display.length == 12){
-            	//save score
-	            var request = new XMLHttpRequest();
-                request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ click);
-                request.onreadystatechange = function() {
-                      if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                    		fnService.getMyBest();
- 							fnService.getGlobalBest();
-                      }
-                };
-                request.send();
-            }
         }
 	},
 	
