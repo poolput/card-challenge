@@ -94,6 +94,10 @@ var fnService = {
         		fnService.ele_card[index].innerHTML = data.number;
         
                 if(fnService.key_before){
+        			if(fnService.key_after){
+        				fnService.key_before = fnService.key_after;
+        				fnService.value_before = fnService.value_after;
+        			} 
         			fnService.key_after = index;
         			fnService.value_after = data.number;
         		}else{
@@ -112,9 +116,9 @@ var fnService = {
         			fnService.value_before = '';
         			fnService.value_after = '';
         		}
+        		
         		console.log(fnService.value_before); 
         		console.log(fnService.value_after); 
-        		
         		console.log(fnService.key_display); 
         		console.log(fnService.number_display); 
         		
