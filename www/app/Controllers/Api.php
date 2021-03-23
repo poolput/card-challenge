@@ -91,7 +91,7 @@ class Api extends BaseController
                 $row = $this->users_model->getMyBest($token);
 
                 $data['score'] = $row['score'];
-                $data['message'] = '';
+                $data['message'] = $token;
                 $data['status'] = 'success';
                 echo json_encode($data);
             } else {
