@@ -115,15 +115,14 @@ var fnService = {
             			fnService.key_after = '';
             			fnService.value_before = '';
             			fnService.value_after = '';
+            		}else{
+                		for (var i=0; i < 12; i++) {
+                			var is_has = fnService.key_display.includes(i);
+                			if(is_has == false){
+                				fnService.ele_card[i].innerHTML = '';
+                			}
+                        }
             		}
-     
-            		for (var i=0; i < 12; i++) {
-            			
-            			var is_has = fnService.key_display.includes(i);
-            			if(is_has == true){
-            				fnService.ele_card[i].innerHTML = '';
-            			}
-                    }
               }  
         };
         request.send();
