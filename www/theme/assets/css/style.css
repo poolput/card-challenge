@@ -5829,6 +5829,8 @@ span.badge {
 	position: relative;
 	background: #F6F7FB;
 	min-height: calc(100vh - 56px);
+	max-width: 1250px !important;
+	margin: 0 auto;
 }
 
 .pcoded .pcoded-content {
@@ -6200,7 +6202,6 @@ span.badge {
 	{
 	position: relative;
 	margin: 0 auto;
-	max-width: 1200px;
 }
 
 .pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-search {
