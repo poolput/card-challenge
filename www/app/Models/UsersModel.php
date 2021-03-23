@@ -45,6 +45,8 @@ class UsersModel extends Model
             'token' => $token
         ]);
         $query = $this->builder->get();
+        echo $this->db->getLastQuery();
+        exit();
 
         return $query->getRowArray();
     }
