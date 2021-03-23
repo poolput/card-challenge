@@ -135,7 +135,7 @@ var fnService = {
             var click = fnService.ele_click[0].innerHTML;
             fnService.ele_click[0].innerHTML = Number(click)+1;
             
-            if(fnService.key_display.length == 10){
+            if(fnService.key_display.length == 12){
             	//save score
 	            var request = new XMLHttpRequest();
                 request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ click);

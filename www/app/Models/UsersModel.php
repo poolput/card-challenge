@@ -76,7 +76,7 @@ class UsersModel extends Model
         ];
         $this->builder->set($data);
         $this->builder->where('token', $token);
-        $this->builder->where('user_id', $user_id);
+        $this->builder->where('id', $user_id);
         $this->builder->update();
 
         return true;
