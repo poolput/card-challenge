@@ -66,6 +66,15 @@ var fnService = {
 	key_display : [],
 	number_display : [],
 	
+	testPost: function(){
+		var request = new XMLHttpRequest();
+		
+		var theUrl = "{{ base_url }}/test-post";
+        request.open("POST", theUrl);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.send(JSON.stringify({ "token": fnService.token}));
+	},
+	
 	setNewGame: function() {
 	
 		var request = new XMLHttpRequest();
@@ -85,12 +94,7 @@ var fnService = {
         fnService.ele_click[0].innerHTML = 0;
         fnService.key_display = [];
         fnService.number_display = [];
-        
-        
-        var theUrl = "{{ base_url }}/set-new-game";
-        request.open("POST", theUrl);
-        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        request.send(JSON.stringify({ "token": fnService.token}));
+
 	},	
 	
 	setClick: function(index){
@@ -189,6 +193,7 @@ var fnService = {
  		fnService.setNewGame();
  		fnService.getMyBest();
  		fnService.getGlobalBest();
+ 		fnService.testPost():
 	}
 }
 

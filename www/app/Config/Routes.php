@@ -60,6 +60,8 @@ $routes->add('/get-my-best/(:any)', 'Api::getMyBest/$1');
 $routes->add('/get-global-best/(:any)', 'Api::getGlobalBest/$1');
 $routes->add('/set-score/(:segment)/(:segment)', 'Api::setScore/$1/$2');
 
+$routes->add('/test-post', 'Api::testPost');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

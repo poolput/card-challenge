@@ -153,4 +153,9 @@ class Api extends BaseController
             echo json_encode($data);
         }
     }
+
+    public function testPost()
+    {
+        print_r($this->request->getPost());
+    }
 }
