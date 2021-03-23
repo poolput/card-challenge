@@ -120,9 +120,8 @@ var fnService = {
             		for (var i=0; i < 12; i++) {
             			
             			var is_has = fnService.key_display.includes(i);
-            			console.log(is_has);
-            			if(is_has == false){
-            				//fnService.ele_card[i].innerHTML = '';
+            			if(is_has == true){
+            				fnService.ele_card[i].innerHTML = '';
             			}
                     }
               }  
