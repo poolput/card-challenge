@@ -107,7 +107,7 @@ var fnService = {
         fnService.request.onload = function() {
           if (this.status >= 200 && this.status < 400) {
           	var data = JSON.parse(this.response);
-            fnService.ele_my_best[index].innerHTML = data.score;
+            fnService.ele_my_best[0].innerHTML = data.score;
           }  
         };
         fnService.request.send();
