@@ -68,5 +68,18 @@ class UsersModel extends Model
 
         return $query->getRowArray();
     }
+
+    public function setScore($token = 0, $user_id = 0, $score = 0)
+    {
+        $data = [
+            'score' => $score
+        ];
+        $this->builder->set($data);
+        $this->builder->where('token', $token);
+        $this->builder->where('user_id', $user_id);
+        $this->builder->update();
+
+        return true;
+    }
 }
 ?>

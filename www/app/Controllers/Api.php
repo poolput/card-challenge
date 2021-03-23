@@ -129,4 +129,28 @@ class Api extends BaseController
             echo json_encode($data);
         }
     }
+
+    public function setScore($token = 0, $score = 0)
+    {
+        if (! empty($token)) {
+            $hash = csrf_hash();
+
+            if ($token == $hash) {
+                $user_id = $this->session->get('user_id');
+                $this->users_model->setScore($token, $user_id, $score);
+
+                $data['message'] = "";
+                $data['status'] = 'success';
+                echo json_encode($data);
+            } else {
+                $data['message'] = '';
+                $data['status'] = 'false';
+                echo json_encode($data);
+            }
+        } else {
+            $data['message'] = '';
+            $data['status'] = 'false';
+            echo json_encode($data);
+        }
+    }
 }
