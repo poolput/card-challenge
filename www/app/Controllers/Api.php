@@ -84,13 +84,10 @@ class Api extends BaseController
 
     public function getMyBest($token = 0)
     {
-        echo 1;
         if (! empty($token)) {
-            echo 2;
             $hash = csrf_hash();
 
             if ($token == $hash) {
-                echo 3;
                 $max = $this->users_model->getMyBest($token);
 
                 $data['number'] = $max;
@@ -98,13 +95,11 @@ class Api extends BaseController
                 $data['status'] = 'success';
                 echo json_encode($data);
             } else {
-                echo 4;
                 $data['message'] = '';
                 $data['status'] = 'false';
                 echo json_encode($data);
             }
         } else {
-            echo 5;
             $data['message'] = '';
             $data['status'] = 'false';
             echo json_encode($data);

@@ -56,7 +56,7 @@ if (! empty($role_id)) {
 
 $routes->add('/set-new-game/(:any)', 'Api::setNewGame/$1');
 $routes->add('/get-card-number/(:segment)/(:segment)', 'Api::getCardNumber/$1/$2');
-$routes->add('/get-my-best(:any)', 'Api::getMyBest/$1');
+$routes->add('/get-my-best/(:any)', 'Api::getMyBest/$1');
 
 /**
  * --------------------------------------------------------------------
