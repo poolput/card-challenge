@@ -22,18 +22,18 @@ class Api extends BaseController
             if ($token == $hash) {
 
                 $number = array(
-                    1 => 1,
-                    2 => 2,
-                    3 => 3,
-                    4 => 4,
-                    5 => 5,
-                    6 => 6,
-                    7 => 1,
-                    8 => 2,
-                    9 => 3,
-                    10 => 4,
-                    11 => 5,
-                    12 => 6
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
                 );
                 shuffle($number);
                 $this->session->set('number', $number);
