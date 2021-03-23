@@ -145,24 +145,27 @@ var fnService = {
                 		}
                 		
                 		fnService.ele_card[index].innerHTML = data.number;
+
+
+                        if(fnService.key_display.length == 12){
+                		    //save score
+                            var request = new XMLHttpRequest();
+                            var final_score = Number(click)+1;
+                            request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ final_score);
+                            request.onreadystatechange = function() {
+                                  if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                                		fnService.getMyBest();
+                						fnService.getGlobalBest();
+                                  }
+                            };
+                            request.send();
+                    }
                   }  
             };
             request.send();
             
             fnService.ele_click[0].innerHTML = Number(click)+1;
-            if(fnService.key_display.length == 11){
-        		    //save score
-                    var request = new XMLHttpRequest();
-                    var final_score = Number(click)+1;
-                    request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ final_score);
-                    request.onreadystatechange = function() {
-                          if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                        		fnService.getMyBest();
-        						fnService.getGlobalBest();
-                          }
-                    };
-                    request.send();
-            }
+
         }
 	},
 	
