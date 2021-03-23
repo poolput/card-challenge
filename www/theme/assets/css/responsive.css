@@ -196,3 +196,9 @@
 		right: 30px;
 	}
 }
+@media ( max-width : 600px) {
+	.col-3 {
+		width: 33% !important;
+	}
+ 
+}
