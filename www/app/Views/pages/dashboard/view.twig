@@ -160,7 +160,7 @@ var fnService = {
 	setScoreEnd: function(){
 		var click = fnService.ele_click[0].innerHTML;
         var request = new XMLHttpRequest();
-        request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ final_score);
+        request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ click);
         request.onreadystatechange = function() {
               if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
             		fnService.getMyBest();
