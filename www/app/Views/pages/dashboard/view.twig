@@ -70,13 +70,7 @@ var fnService = {
 	
 		var request = new XMLHttpRequest();
 		
-		var theUrl = "/set-new-game";
-        request.open("POST", theUrl);
-        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        request.send(JSON.stringify({ "token": fnService.token}));
-
 		fnService.card[0].style.display = 'none';
-		
 		
         request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token);
         request.onreadystatechange = function() {
@@ -92,6 +86,12 @@ var fnService = {
         fnService.ele_click[0].innerHTML = 0;
         fnService.key_display = [];
         fnService.number_display = [];
+        
+        
+        var theUrl = "/set-new-game";
+        request.open("POST", theUrl);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.send(JSON.stringify({ "token": fnService.token}));
 	},	
 	
 	setClick: function(index){
