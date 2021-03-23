@@ -106,9 +106,17 @@ var fnService = {
         			fnService.number_display.push(fnService.value_after);
         			fnService.key_display.push(fnService.key_before);
         			fnService.key_display.push(fnService.key_after);
+        			
+        			fnService.key_before = '';
+        			fnService.key_after = '';
+        			fnService.value_before = '';
+        			fnService.value_after = '';
         		}
         		console.log(fnService.value_before); 
         		console.log(fnService.value_after); 
+        		
+        		console.log(fnService.key_display); 
+        		console.log(fnService.number_display); 
         		
         		for (var i=0; i < 12; i++) {
         			var key = fnService.ele_card[i];
