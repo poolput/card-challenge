@@ -59,7 +59,7 @@ var fnService = {
 	ele_my_best : document.getElementsByClassName("blu-my-best"),
 	ele_global_best : document.getElementsByClassName("blu-global-best"),
 	token : '{{ token }}',
-	request : new XMLHttpRequest(),
+	let request : new XMLHttpRequest(),
 	
 	setNewGame: function() {
 		fnService.card[0].style.display = 'none';
