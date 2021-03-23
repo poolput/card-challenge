@@ -208,4 +208,19 @@
 	    padding: 1px !important;
 	    min-height: 10px !important;
 	}
+	.card-item-number{
+		font-size: 16px;
+		position: absolute;
+	}
+	.h6 {
+		font-size: 18px;
+	}
+	.card-item {
+		position: relative;
+		
+	}
+	.card-item {
+		position: relative;
+		
+	}
 }
