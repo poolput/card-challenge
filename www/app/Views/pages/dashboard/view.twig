@@ -102,7 +102,8 @@ var fnService = {
 				fnService.ele_card[i].innerHTML = '';
 			}
         }
-        
+        console.log(fnService.click_before);
+        console.log(fnService.click_after);
         var request = new XMLHttpRequest();
         request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
         request.onreadystatechange = function() {
