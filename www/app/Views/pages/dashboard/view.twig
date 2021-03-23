@@ -128,9 +128,15 @@ var fnService = {
 	},
 	
 	init : function(){
- 		fnService.setNewGame();
- 		fnService.getMyBest();
- 		fnService.getGlobalBest();
+    	sleep(100).then(() => {
+            fnService.setNewGame();
+        });
+ 		sleep(100).then(() => {
+            fnService.getMyBest();
+        });
+        sleep(100).then(() => {
+            fnService.getGlobalBest();
+        });
 	}
 }
 
