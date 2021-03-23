@@ -6200,6 +6200,7 @@ span.badge {
 	{
 	position: relative;
 	margin: 0 auto;
+	max-width: 1200px;
 }
 
 .pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-search {
