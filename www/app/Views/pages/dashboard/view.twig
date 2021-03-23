@@ -77,6 +77,7 @@ var fnService = {
         }
         
         fnService.ele_click[0].innerHTML = 0;
+        fnService.getMyBest();
 	},	
 	
 	setClick: function(index){
@@ -111,6 +112,7 @@ var fnService = {
           }  
         };
         fnService.request.send();
+        fnService.getGlobalBest();
 	},
 	
 	getGlobalBest: function(){
@@ -125,18 +127,12 @@ var fnService = {
           }  
         };
         fnService.request.send();
+        
 	},
 	
 	init : function(){
-    	sleep(100).then(() => {
-            fnService.setNewGame();
-        });
- 		sleep(100).then(() => {
-            fnService.getMyBest();
-        });
-        sleep(100).then(() => {
-            fnService.getGlobalBest();
-        });
+	
+ 		fnService.setNewGame();
 	}
 }
 
