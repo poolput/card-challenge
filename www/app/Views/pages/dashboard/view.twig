@@ -86,7 +86,8 @@ var fnService = {
         
         fnService.request.onload = function() {
           if (this.status >= 200 && this.status < 400) {
-            fnService.ele_card[index].innerHTML = this.response.number;
+          	var data = JSON.parse(this.response);
+            fnService.ele_card[index].innerHTML = data.number;
             console.log(data);
           }  
         };
