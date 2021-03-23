@@ -89,7 +89,7 @@ var fnService = {
         
         fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
-          	var data = JSON.parse(request.responseText);
+          	var data = JSON.parse(fnService.request.responseText);
             fnService.ele_card[index].innerHTML = data.number;
           }  
         };
@@ -106,7 +106,7 @@ var fnService = {
         
         fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
-          	var data = JSON.parse(request.responseText);
+          	var data = JSON.parse(fnService.request.responseText);
             fnService.ele_my_best[0].innerHTML = data.score;
           }  
         };
@@ -120,7 +120,7 @@ var fnService = {
         
         fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
-          	var data = JSON.parse(request.responseText);
+          	var data = JSON.parse(fnService.request.responseText);
             fnService.ele_global_best[0].innerHTML = data.score;
           }  
         };
