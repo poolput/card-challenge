@@ -77,7 +77,6 @@ var fnService = {
         }
         
         fnService.ele_click[0].innerHTML = 0;
-        fnService.getMyBest();
 	},	
 	
 	setClick: function(index){
@@ -88,7 +87,7 @@ var fnService = {
         fnService.request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index, true);
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         
-        fnService.request.onload = function() {
+        fnService.request.onreadystatechange = function() {
           if (this.status >= 200 && this.status < 400) {
           	var data = JSON.parse(this.response);
             fnService.ele_card[index].innerHTML = data.number;
@@ -105,14 +104,13 @@ var fnService = {
         fnService.request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token, true);
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         
-        fnService.request.onload = function() {
+        fnService.request.onreadystatechange = function() {
           if (this.status >= 200 && this.status < 400) {
           	var data = JSON.parse(this.response);
             fnService.ele_my_best[0].innerHTML = data.score;
           }  
         };
         fnService.request.send();
-        fnService.getGlobalBest();
 	},
 	
 	getGlobalBest: function(){
@@ -120,19 +118,19 @@ var fnService = {
         fnService.request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token, true);
         fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         
-        fnService.request.onload = function() {
+        fnService.request.onreadystatechange = function() {
           if (this.status >= 200 && this.status < 400) {
           	var data = JSON.parse(this.response);
             fnService.ele_global_best[0].innerHTML = data.score;
           }  
         };
         fnService.request.send();
-        
 	},
 	
 	init : function(){
-	
  		fnService.setNewGame();
+ 		fnService.getMyBest();
+ 		fnService.getGlobalBest();
 	}
 }
 
