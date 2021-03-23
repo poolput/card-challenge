@@ -90,7 +90,22 @@ var fnService = {
           if (this.status >= 200 && this.status < 400) {
           	var data = JSON.parse(this.response);
             fnService.ele_card[index].innerHTML = data.number;
-            console.log(data);
+          }  
+        };
+        fnService.request.send();
+        var click = fnService.ele_click[0].innerHTML;
+        fnService.ele_click[0].innerHTML = Number(click)+1;
+	},
+	
+	getMyBest: function(){
+        
+        fnService.request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token, true);
+        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        
+        fnService.request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+          	var data = JSON.parse(this.response);
+            fnService.ele_my_best[index].innerHTML = data.number;
           }  
         };
         fnService.request.send();

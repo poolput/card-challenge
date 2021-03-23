@@ -37,5 +37,16 @@ class UsersModel extends Model
 
         return $insert_id;
     }
+
+    public function getMyBest($token = 0)
+    {
+        $this->builder->selectMax('score');
+        $this->builder->getWhere([
+            'token' => $token
+        ]);
+        $query = $this->builder->get();
+
+        return $query->getRowArray();
+    }
 }
 ?>
