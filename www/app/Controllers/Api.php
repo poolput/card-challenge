@@ -39,14 +39,16 @@ class Api extends BaseController
                 $this->session->set('number', $number);
                 $user_id = $this->users_model->setUser($token);
                 $this->session->set('user_id', $user_id);
-                echo true;
+                $data['message'] = '';
+                $data['status'] = 'success';
+                echo json_encode($data);
             } else {
-                $data['message'] = 'not found';
+                $data['message'] = '';
                 $data['status'] = 'false';
                 echo json_encode($data);
             }
         } else {
-            $data['message'] = 'not found';
+            $data['message'] = '';
             $data['status'] = 'false';
             echo json_encode($data);
         }
@@ -62,14 +64,21 @@ class Api extends BaseController
 
                 $number = $this->session->get('number');
                 $user_id = $this->session->get('user_id');
-                $this->data['user'] = $this->users_model->getUser($this->data['token'], $user_id);
+                $this->data['user'] = $this->users_model->getUser($token, $user_id);
 
-                echo $number[$key];
+                $data['number'] = $number[$key];
+                $data['message'] = '';
+                $data['status'] = 'success';
+                echo json_encode($data);
             } else {
-                echo false;
+                $data['message'] = '';
+                $data['status'] = 'false';
+                echo json_encode($data);
             }
         } else {
-            echo false;
+            $data['message'] = '';
+            $data['status'] = 'false';
+            echo json_encode($data);
         }
     }
 }
