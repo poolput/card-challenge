@@ -98,9 +98,8 @@ var fnService = {
 	},	
 	
 	setClick: function(index){
-	
-		var click = fnService.ele_click[0].innerHTML;
 		
+		var click = fnService.ele_click[0].innerHTML;
 		if(fnService.key_display.length == 12){
 			
 			alert('Game Over');
@@ -143,32 +142,33 @@ var fnService = {
                     			}
                             }
                 		}
+
+                		if(fnService.key_display.length == 12){
+                			fnService.setScoreEnd();
+                        }
                 		
                 		fnService.ele_card[index].innerHTML = data.number;
-
-
-                        if(fnService.key_display.length == 12){
-                		    //save score
-                            var request = new XMLHttpRequest();
-                            var final_score = Number(click)+1;
-                            request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ final_score);
-                            request.onreadystatechange = function() {
-                                  if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                                		fnService.getMyBest();
-                						fnService.getGlobalBest();
-                                  }
-                            };
-                            request.send();
-                    }
+                		fnService.setScoreEnd
                   }  
             };
             request.send();
             
             fnService.ele_click[0].innerHTML = Number(click)+1;
-
         }
 	},
-	
+
+	setScoreEnd: function(){
+		var click = fnService.ele_click[0].innerHTML;
+        var request = new XMLHttpRequest();
+        request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ final_score);
+        request.onreadystatechange = function() {
+              if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+            		fnService.getMyBest();
+					fnService.getGlobalBest();
+              }
+        };
+        request.send();
+	},
 	getMyBest: function(){
         
         var request = new XMLHttpRequest();
