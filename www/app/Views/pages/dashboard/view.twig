@@ -85,6 +85,7 @@ var fnService = {
 	},	
 	
 	setClick: function(index){
+		console.log(fnService.key_display.length);
 		if(fnService.key_display.length == 12){
 			alert('Game Over');
 		}else{
@@ -133,8 +134,8 @@ var fnService = {
             
             var click = fnService.ele_click[0].innerHTML;
             fnService.ele_click[0].innerHTML = Number(click)+1;
-            console.log(fnService.key_display.length);
-            if(fnService.key_display.length == 12){
+            
+            if(fnService.key_display.length == 10){
             	//save score
 	            var request = new XMLHttpRequest();
                 request.open('GET', '{{ base_url }}/set-score/'+ fnService.token+'/'+ click);
@@ -142,7 +143,7 @@ var fnService = {
                       if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     		fnService.getMyBest();
  							fnService.getGlobalBest();
-                      }  
+                      }
                 };
                 request.send();
             }
