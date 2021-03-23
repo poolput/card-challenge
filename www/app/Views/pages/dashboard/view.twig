@@ -123,8 +123,8 @@ var fnService = {
                   if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
               			var data = JSON.parse(request.responseText);
                 
-                        if(fnService.key_before){
-                			if(Number(fnService.key_after)){
+                        if(fnService.value_before){
+                			if(fnService.value_after){
                 				fnService.key_before = fnService.key_after;
                 				fnService.value_before = fnService.value_after;
                 			} 
