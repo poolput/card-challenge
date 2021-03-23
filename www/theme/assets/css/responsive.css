@@ -223,4 +223,10 @@
 	.card{
 		min-width: 60px  !important;
 	}
+	
+}
+@media ( max-width : 450px) {
+	.new-game {
+		padding-right: 1px !important;
+	}
 }
