@@ -85,8 +85,7 @@ var fnService = {
 	},	
 	
 	setClick: function(index){
-		console.log(fnService.key_display.length);
-		if(fnService.key_display.length > 12){
+		if(fnService.key_display.length = 12){
 			alert('Game Over');
 		}else{
         
@@ -134,7 +133,7 @@ var fnService = {
             
             var click = fnService.ele_click[0].innerHTML;
             fnService.ele_click[0].innerHTML = Number(click)+1;
-            
+            console.log(fnService.key_display.length);
             if(fnService.key_display.length == 12){
             	//save score
 	            var request = new XMLHttpRequest();
