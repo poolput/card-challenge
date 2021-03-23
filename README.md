@@ -2,7 +2,7 @@
 
   
 
-![card](https://sv1.picz.in.th/images/2021/03/23/DAGEEv.jpg)
+![card](https://pcdata.intensivewatch.com/file/card.jpg)
 
   
 

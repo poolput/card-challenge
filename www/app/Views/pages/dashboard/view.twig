@@ -85,51 +85,56 @@ var fnService = {
 	},	
 	
 	setClick: function(index){
+	
+		if(fnService.key_display.lenght == 12){
+			alert('complete');
+		}else{
         
-        var request = new XMLHttpRequest();
-        request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
-        request.onreadystatechange = function() {
-              if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-          			var data = JSON.parse(request.responseText);
+            var request = new XMLHttpRequest();
+            request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
+            request.onreadystatechange = function() {
+                  if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+              			var data = JSON.parse(request.responseText);
+                
+                        if(fnService.key_before){
+                			if(fnService.key_after){
+                				fnService.key_before = fnService.key_after;
+                				fnService.value_before = fnService.value_after;
+                			} 
+                			fnService.key_after = index;
+                			fnService.value_after = data.number;
+                		}else{
+                			fnService.key_before = index;
+                			fnService.value_before = data.number;
+                		}
+                		
+                		if(fnService.value_before == fnService.value_after){
+                			fnService.number_display.push(fnService.value_before);
+                			fnService.number_display.push(fnService.value_after);
+                			fnService.key_display.push(fnService.key_before);
+                			fnService.key_display.push(fnService.key_after);
+                			
+                			fnService.key_before = '';
+                			fnService.key_after = '';
+                			fnService.value_before = '';
+                			fnService.value_after = '';
+                		}else{
+                    		for (var i=0; i < 12; i++) {
+                    			var is_has = fnService.key_display.includes(i);
+                    			if(is_has == false){
+                    				fnService.ele_card[i].innerHTML = '';
+                    			}
+                            }
+                		}
+                		
+                		fnService.ele_card[index].innerHTML = data.number;
+                  }  
+            };
+            request.send();
             
-                    if(fnService.key_before){
-            			if(fnService.key_after){
-            				fnService.key_before = fnService.key_after;
-            				fnService.value_before = fnService.value_after;
-            			} 
-            			fnService.key_after = index;
-            			fnService.value_after = data.number;
-            		}else{
-            			fnService.key_before = index;
-            			fnService.value_before = data.number;
-            		}
-            		
-            		if(fnService.value_before == fnService.value_after){
-            			fnService.number_display.push(fnService.value_before);
-            			fnService.number_display.push(fnService.value_after);
-            			fnService.key_display.push(fnService.key_before);
-            			fnService.key_display.push(fnService.key_after);
-            			
-            			fnService.key_before = '';
-            			fnService.key_after = '';
-            			fnService.value_before = '';
-            			fnService.value_after = '';
-            		}else{
-                		for (var i=0; i < 12; i++) {
-                			var is_has = fnService.key_display.includes(i);
-                			if(is_has == false){
-                				fnService.ele_card[i].innerHTML = '';
-                			}
-                        }
-            		}
-            		
-            		fnService.ele_card[index].innerHTML = data.number;
-              }  
-        };
-        request.send();
-        
-        var click = fnService.ele_click[0].innerHTML;
-        fnService.ele_click[0].innerHTML = Number(click)+1;
+            var click = fnService.ele_click[0].innerHTML;
+            fnService.ele_click[0].innerHTML = Number(click)+1;
+        }
 	},
 	
 	getMyBest: function(){
