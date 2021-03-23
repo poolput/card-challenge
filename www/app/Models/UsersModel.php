@@ -40,10 +40,16 @@ class UsersModel extends Model
 
     public function getMyBest($token = 0)
     {
-        $this->builder->selectMin('score')->getWhere([
-            'token' => $token
-        ]);
-        $query = $this->builder->get();
+        $sql = "    SELECT
+                        MIN(score) as score
+                    FROM
+                        users
+                    where
+                        token = '" . $token . "'
+                        and scroe <> 0
+                    limit 1
+        ";
+        $query = $this->db->query($sql);
 
         return $query->getRowArray();
     }
