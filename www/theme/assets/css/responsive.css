@@ -204,4 +204,8 @@
 	.p-5 {
 	    padding: 25px !important;
 	}
+	.card-block {
+	    padding: 1px !important;
+	    min-height: 10px !important;
+	}
 }
