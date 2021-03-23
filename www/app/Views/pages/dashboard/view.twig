@@ -60,6 +60,11 @@ var fnService = {
 	ele_global_best : document.getElementsByClassName("blu-global-best"),
 	token : '{{ token }}',
 	
+	click_after : 0,
+	click_before : 0,
+	
+	number_display : [],
+	
 	setNewGame: function() {
 		fnService.card[0].style.display = 'none';
 		
@@ -79,8 +84,23 @@ var fnService = {
 	},	
 	
 	setClick: function(index){
-		for (var i=0; i<fnService.ele_card.length; i++) {
-            fnService.ele_card[i].innerHTML = '';
+		if(fnService.click_before){
+			fnService.click_after = index;
+		}else{
+			fnService.click_before = index;
+		}
+		
+		if(fnService.click_before == fnService.click_after){
+			fnService.number_display.push(fnService.click_before);
+			fnService.number_display.push(fnService.click_after);
+		}
+		for (var i=0; i < 12; i++) {
+			var key = fnService.ele_card[i];
+			
+			var is_has = fnService.number_display.includes(key);
+			if(is_has == false){
+				fnService.ele_card[i].innerHTML = '';
+			}
         }
         
         var request = new XMLHttpRequest();
