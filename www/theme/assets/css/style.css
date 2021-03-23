@@ -10552,6 +10552,7 @@ p {
 /*====== Ready to use Css End ======*/
 .card-block {
 	padding: 1.25rem;
+	min-height: 80px;
 }
 
 .card {
