@@ -87,7 +87,9 @@ class Api extends BaseController
         if (! empty($token)) {
 
             $hash = csrf_hash();
-
+            echo $token . '---';
+            echo $hash;
+            exit();
             if ($token == $hash) {
 
                 $max = $this->users_model->getMyBest($token);

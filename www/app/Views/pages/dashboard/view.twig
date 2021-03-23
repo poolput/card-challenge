@@ -71,6 +71,7 @@ var fnService = {
             }
         }
         fnService.request.send();
+        
         for (var i=0; i<fnService.ele_card.length; i++) {
             fnService.ele_card[i].innerHTML = '';
         }
@@ -93,6 +94,7 @@ var fnService = {
           }  
         };
         fnService.request.send();
+        
         var click = fnService.ele_click[0].innerHTML;
         fnService.ele_click[0].innerHTML = Number(click)+1;
 	},
@@ -109,6 +111,7 @@ var fnService = {
           }  
         };
         fnService.request.send();
+        
         var click = fnService.ele_click[0].innerHTML;
         fnService.ele_click[0].innerHTML = Number(click)+1;
 	},
