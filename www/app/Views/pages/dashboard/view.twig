@@ -63,9 +63,8 @@ var fnService = {
 	
 	setNewGame: function() {
 		fnService.card[0].style.display = 'none';
-        fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token, true);
-        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-         fnService.request.onreadystatechange = function() {
+        fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token);
+        fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
                 fnService.card[0].style.display = '';
             }
@@ -75,7 +74,6 @@ var fnService = {
         for (var i=0; i<fnService.ele_card.length; i++) {
             fnService.ele_card[i].innerHTML = '';
         }
-        
         fnService.ele_click[0].innerHTML = 0;
 	},	
 	
@@ -84,9 +82,7 @@ var fnService = {
             fnService.ele_card[i].innerHTML = '';
         }
         
-        fnService.request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index, true);
-        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        
+        fnService.request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
         fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
           	var data = JSON.parse(fnService.request.responseText);
@@ -101,9 +97,7 @@ var fnService = {
 	
 	getMyBest: function(){
         
-        fnService.request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token, true);
-        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        
+        fnService.request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token);
         fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
           	var data = JSON.parse(fnService.request.responseText);
@@ -115,9 +109,7 @@ var fnService = {
 	
 	getGlobalBest: function(){
         
-        fnService.request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token, true);
-        fnService.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        
+        fnService.request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token);
         fnService.request.onreadystatechange = function() {
           if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
           	var data = JSON.parse(fnService.request.responseText);
