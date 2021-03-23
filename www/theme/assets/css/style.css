@@ -5829,13 +5829,13 @@ span.badge {
 	position: relative;
 	background: #F6F7FB;
 	min-height: calc(100vh - 56px);
-	max-width: 1250px !important;
-	margin: 0 auto;
 }
 
 .pcoded .pcoded-content {
 	position: relative;
 	display: block;
+	max-width: 1250px !important;
+	margin: 0 auto;
 }
 
 .pcoded-inner-navbar {
