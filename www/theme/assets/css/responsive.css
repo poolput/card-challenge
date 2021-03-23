@@ -201,5 +201,7 @@
 		width: 25% !important;
 		max-height: 75px !important;
 	}
- 
+	.p-5 {
+	    padding: 25px !important;
+	}
 }
