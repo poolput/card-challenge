@@ -46,7 +46,7 @@ class UsersModel extends Model
                         users
                     where
                         token = '" . $token . "'
-                        and scroe <> 0
+                        and score <> 0
                     limit 1
         ";
         $query = $this->db->query($sql);
