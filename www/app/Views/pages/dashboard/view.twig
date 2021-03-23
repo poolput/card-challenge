@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					<div class="row card-body">
-						{% for i in 0..11 %}
+						{% for i in 1..12 %}
 						<div class="col-xl-3 col-md-3 col-sm-3 col-3">
 							<div class="card">
 								<div class="card-block" onclick="fnService.setClick({{ i }});">
@@ -88,7 +88,7 @@ var fnService = {
         }
         request.send();
         
-        for (var i=0; i<fnService.ele_card.length; i++) {
+        for (var i=1; i<=fnService.ele_card.length; i++) {
             fnService.ele_card[i].innerHTML = '';
         }
         fnService.ele_click[0].innerHTML = 0;
@@ -146,7 +146,7 @@ var fnService = {
                 			fnService.value_before = '';
                 			fnService.value_after = '';
                 		}else{
-                    		for (var i=0; i < 12; i++) {
+                    		for (var i=1; i <= 12; i++) {
                     			var is_has = fnService.key_display.includes(i);
                     			if(is_has == false){
                     				fnService.ele_card[i].innerHTML = '';
