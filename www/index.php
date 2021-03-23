@@ -15,7 +15,7 @@ $pathsPath = realpath(FCPATH . './app/Config/Paths.php');
 // ^^^ Change this if you move your application folder
 
 // chmod(FCPATH . './writable', 0777);
-exec("chmod FCPATH . './writable' 0777");
+exec("chmod FCPATH . './writable/cache' 0777");
 /*
  * ---------------------------------------------------------------
  * BOOTSTRAP THE APPLICATION
