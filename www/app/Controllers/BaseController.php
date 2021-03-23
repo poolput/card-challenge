@@ -61,16 +61,5 @@ class BaseController extends Controller
         $this->data['title'] = TITLE;
         $this->data['description'] = DESCRIPTION;
         $this->data['keywords'] = KEYWORD;
-
-        helper('cookie');
-
-        $data['name'] = 'email';
-        $data['value'] = 1;
-        $data['expire'] = (30 * 24 * 60 * 60);
-        $data['secure'] = TRUE;
-        $data['domain'] = "domain.com";
-        set_cookie($data);
-
-        get_cookie('email');
     }
 }

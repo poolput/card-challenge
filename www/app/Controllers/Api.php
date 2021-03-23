@@ -41,10 +41,14 @@ class Api extends BaseController
                 $this->session->set('user_id', $user_id);
                 echo true;
             } else {
-                echo false;
+                $data['message'] = 'not found';
+                $data['status'] = 'false';
+                echo json_encode($data);
             }
         } else {
-            echo false;
+            $data['message'] = 'not found';
+            $data['status'] = 'false';
+            echo json_encode($data);
         }
     }
 
