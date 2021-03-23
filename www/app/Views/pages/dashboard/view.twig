@@ -63,7 +63,7 @@ var fnService = {
 	setNewGame: function() {
 		fnService.card[0].style.display = 'none';
 		
-		var request : new XMLHttpRequest();
+		var request = new XMLHttpRequest();
         request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token);
         request.onreadystatechange = function() {
           if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
@@ -83,7 +83,7 @@ var fnService = {
             fnService.ele_card[i].innerHTML = '';
         }
         
-        var request : new XMLHttpRequest();
+        var request = new XMLHttpRequest();
         request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
         request.onreadystatechange = function() {
           if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
@@ -99,7 +99,7 @@ var fnService = {
 	
 	getMyBest: function(){
         
-        var request : new XMLHttpRequest();
+        var request = new XMLHttpRequest();
         request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token);
         request.onreadystatechange = function() {
           if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
@@ -112,7 +112,7 @@ var fnService = {
 	
 	getGlobalBest: function(){
         
-        var request : new XMLHttpRequest();
+        var request = new XMLHttpRequest();
         request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token);
         request.onreadystatechange = function() {
           if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
