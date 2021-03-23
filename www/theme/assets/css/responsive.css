@@ -209,7 +209,8 @@
 	    min-height: 10px !important;
 	}
 	.h6 {
-		font-size: 18px;
+		font-size: 15px;
+		font-weight: normal !important;
 	}
 	.card-item {
 		position: relative;
