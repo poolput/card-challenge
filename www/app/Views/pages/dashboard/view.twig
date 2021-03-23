@@ -87,7 +87,7 @@ var fnService = {
         fnService.number_display = [];
         
         
-        var theUrl = "./set-new-game";
+        var theUrl = "{{ base_url }}/set-new-game";
         request.open("POST", theUrl);
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         request.send(JSON.stringify({ "token": fnService.token}));
