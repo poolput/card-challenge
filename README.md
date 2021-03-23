@@ -2,7 +2,7 @@
 
   
 
-![Landing Page](https://preview.ibb.co/gOTa0y/LAMP_STACK.png)
+![card]( https://sv1.picz.in.th/images/2021/03/23/DAGEEv.jpg)
 
   
 
