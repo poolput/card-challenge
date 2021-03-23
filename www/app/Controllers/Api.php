@@ -66,7 +66,7 @@ class Api extends BaseController
                 $user_id = $this->session->get('user_id');
                 $this->data['user'] = $this->users_model->getUser($token, $user_id);
 
-                $data['number'] = $number[$key];
+                $data['number'] = $number[(int) $key];
                 $data['message'] = '';
                 $data['status'] = 'success';
                 echo json_encode($data);
