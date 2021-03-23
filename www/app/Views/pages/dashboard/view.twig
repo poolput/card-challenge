@@ -91,7 +91,6 @@ var fnService = {
         request.onreadystatechange = function() {
               if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
           			var data = JSON.parse(request.responseText);
-            		fnService.ele_card[index].innerHTML = data.number;
             
                     if(fnService.key_before){
             			if(fnService.key_after){
@@ -123,6 +122,8 @@ var fnService = {
                 			}
                         }
             		}
+            		
+            		fnService.ele_card[index].innerHTML = data.number;
               }  
         };
         request.send();
