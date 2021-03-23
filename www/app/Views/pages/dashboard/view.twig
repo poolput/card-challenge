@@ -59,17 +59,18 @@ var fnService = {
 	ele_my_best : document.getElementsByClassName("blu-my-best"),
 	ele_global_best : document.getElementsByClassName("blu-global-best"),
 	token : '{{ token }}',
-	let request : new XMLHttpRequest(),
 	
 	setNewGame: function() {
 		fnService.card[0].style.display = 'none';
-        fnService.request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token);
-        fnService.request.onreadystatechange = function() {
-          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
+		
+		let request : new XMLHttpRequest();
+        request.open('GET', '{{ base_url }}/set-new-game/'+ fnService.token);
+        request.onreadystatechange = function() {
+          if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 fnService.card[0].style.display = '';
             }
         }
-        fnService.request.send();
+        request.send();
         
         for (var i=0; i<fnService.ele_card.length; i++) {
             fnService.ele_card[i].innerHTML = '';
@@ -82,14 +83,15 @@ var fnService = {
             fnService.ele_card[i].innerHTML = '';
         }
         
-        fnService.request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
-        fnService.request.onreadystatechange = function() {
-          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
-          	var data = JSON.parse(fnService.request.responseText);
+        let request : new XMLHttpRequest();
+        request.open('GET', '{{ base_url }}/get-card-number/'+ fnService.token+'/'+ index);
+        request.onreadystatechange = function() {
+          if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+          	var data = JSON.parse(request.responseText);
             fnService.ele_card[index].innerHTML = data.number;
           }  
         };
-        fnService.request.send();
+        request.send();
         
         var click = fnService.ele_click[0].innerHTML;
         fnService.ele_click[0].innerHTML = Number(click)+1;
@@ -97,26 +99,28 @@ var fnService = {
 	
 	getMyBest: function(){
         
-        fnService.request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token);
-        fnService.request.onreadystatechange = function() {
-          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
-          	var data = JSON.parse(fnService.request.responseText);
+        let request : new XMLHttpRequest();
+        request.open('GET', '{{ base_url }}/get-my-best/'+ fnService.token);
+        request.onreadystatechange = function() {
+          if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+          	var data = JSON.parse(request.responseText);
             fnService.ele_my_best[0].innerHTML = data.score;
           }  
         };
-        fnService.request.send();
+        request.send();
 	},
 	
 	getGlobalBest: function(){
         
-        fnService.request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token);
-        fnService.request.onreadystatechange = function() {
-          if(fnService.request.readyState === XMLHttpRequest.DONE && fnService.request.status === 200) {
-          	var data = JSON.parse(fnService.request.responseText);
+        let request : new XMLHttpRequest();
+        request.open('GET', '{{ base_url }}/get-global-best/'+ fnService.token);
+        request.onreadystatechange = function() {
+          if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+          	var data = JSON.parse(request.responseText);
             fnService.ele_global_best[0].innerHTML = data.score;
           }  
         };
-        fnService.request.send();
+        request.send();
 	},
 	
 	init : function(){
