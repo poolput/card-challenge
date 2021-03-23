@@ -1,4 +1,4 @@
-#  LAMP stack built with Docker Compose
+#  LAMP stack, CodeIgniter 4, Card Challenge built with Docker Compose
 
   
 
